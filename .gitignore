@@ -1,0 +1,28 @@
+# System
+.DS_Store
+
+# Environment
+.env
+
+# Docker
+docker-compose.override.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Data Volumes (IMPORTANT: Do not commit large DB data)
+pg_data/
+qdrant_data/
+n8n_data/
+open-webui/
+downloads/
+
+# Local Backups (Optionally commit them, but maybe not if huge? 
+# User wants backup to git, so we DO include backups unless they are too big.
+# For now, let's include sql files in backups/ but exclude everything else)
+backups/*
+!backups/*.sql
