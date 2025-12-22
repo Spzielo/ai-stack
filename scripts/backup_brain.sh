@@ -18,6 +18,18 @@ docker exec -t "$CONTAINER_NAME" pg_dump -U "$DB_USER" "$DB_NAME" > "$FILENAME"
 
 if [ $? -eq 0 ]; then
   echo "✅ Backup successful: $FILENAME"
+  
+  # Auto-commit to Git
+  echo "📦 Pushing to GitHub..."
+  git add "$FILENAME"
+  git commit -m "backup: auto-save brain state $(date +%Y-%m-%d)"
+  git push
+  
+  if [ $? -eq 0 ]; then
+     echo "🚀 Pushed to remote repository!"
+  else
+     echo "⚠️  Git push failed (is remote configured?)"
+  fi
 else
   echo "❌ Backup failed!"
   exit 1
