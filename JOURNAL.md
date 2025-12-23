@@ -35,3 +35,24 @@ On a démarré en Flask par habitude. Mais Flask est synchrone (bloquant).
 Pour un "Cerveau" qui devra traiter des requêtes IA potentiellement longues, bloquer le thread principal est dangereux.
 **Action** : Réécriture complète en **FastAPI** (ASGI/Async).
 **Résultat** : Plus moderne, validation automatique via Pydantic, et prêt pour l'avenir.
+
+---
+
+## 2025-12-23: Phase 5 - Souveraineté & Optimisation (Ollama)
+
+### 💡 Objectif
+S'affranchir des coûts API (OpenAI) et garantir la confidentialité en faisant tourner l'IA localement sur le Mac.
+
+### 🚧 Challenge : Robustesse des Modèles Locaux
+Nous avons migré de `gpt-4o` (très robuste sur le JSON structuré) vers des modèles locaux.
+**Problème** : `llama3` et `llama3.1:70b` étaient soit absents, soit trop lourds (500 Error, crash).
+**Solution** :
+1.  **Architecture Adaptative** : Le code (`llm.py`) essaie d'abord un parsing strict (Pydantic). S'il échoue (404/500/Format), il bascule sur un mode "JSON standard" plus tolérant.
+2.  **Choix du Modèle** : Validation de **`qwen2.5:32b`**. Il s'est avéré bien meilleur que Llama 3.1 (8b) pour comprendre le contexte ("Buy milk" -> Tagué comme "errand", ce que Llama a manqué).
+
+### ✅ État Final
+Le système est complet :
+- **Intelligent** (Classification Qwen).
+- **Mémoire** (RAG via Qdrant Local).
+- **Interface** (Open WebUI connecté au Brain).
+- **Gratuit** (100% Local).

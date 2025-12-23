@@ -58,6 +58,43 @@ docker exec python-runner poetry add <nom_librairie>
 docker exec python-runner poetry add pandas
 ```
 (Le fichier `pyproject.toml` et `poetry.lock` seront mis à jour automatiquement sur ton mac).
+## ✨ Features
+
+- **🧠 Cognitive Engine**: Categorizes inputs (Tasks vs Notes) using **Local LLMs** (Qwen 2.5 / Llama 3).
+- **📝 Second Brain**: RAG (Retrieval Augmented Generation) powered by **Qdrant**.
+- **💬 Cockpit**: Chat interface via **Open WebUI**.
+- **🔔 Notifications**: Dual-channel Slack alerts (Logs vs Alerts).
+- **🔒 Privacy First**: 100% Local (Ollama) or API (OpenAI) configurable.
+
+## 🚀 Quick Start (Local)
+
+### Prerequisites
+- Docker & Docker Compose
+- [Ollama](https://ollama.com/) (running on host)
+
+### 1. Prepare Models
+```bash
+ollama pull qwen2.5:32b
+ollama pull nomic-embed-text
+```
+
+### 2. Configure Environment
+Copy `.env.example` to `.env`. Default configuration targets local Ollama:
+```bash
+LLM_BASE_URL=http://host.docker.internal:11434/v1
+LLM_MODEL=qwen2.5:32b
+EMBEDDING_MODEL=nomic-embed-text
+```
+
+### 3. Launch
+```bash
+make dev
+```
+Access Open WebUI at `http://localhost:3000`.
+Connect it to the Brain:
+- URL: `http://python-runner:8000/v1`
+- Key: `any`
+- Model: `second-brain`
 
 ## 📢 Notifications (Slack)
 
