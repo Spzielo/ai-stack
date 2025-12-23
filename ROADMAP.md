@@ -17,15 +17,17 @@ Objectif : Construire un "Second Cerveau" personnel autonome, robuste et intelli
 *Donner vie au cerveau : transformer la donnée brute en information structurée.*
 
 - [ ] **Ingestion** : Endpoint `/capture` capable de recevoir Texte, Audio, Liens.
-- [ ] **Classification** : Router intelligemment (Note vs Tâche vs Projet) via LLM.
+- [ ] **Classification** : Router intelligemment (Note vs Tâche vs Projet) via LLM (avec validation déterministe).
+- [ ] **Décision** : Déterminer l’action à entreprendre (IA + règles).
 - [ ] **Enrichissement** : Résumer les notes, extraire les dates des tâches.
 - [ ] **Mémoire** : Indexer le contenu dans Qdrant (RAG) pour le retrouver.
-- [ ] **Actions** : Exécuter des scripts Python complexes sur demande.
+- [ ] **Exécution** : Exécuter des scripts Python complexes sur demande.
 
 ## 🕹️ Phase 3 : Interface & Cockpit (Futur)
 *Piloter le système via une interface unifiée.*
 
 - [ ] **Dashboard** : Visualiser les tâches en cours, le flux d'idées.
+- [ ] **Review** : Revue quotidienne / hebdomadaire automatisée (résumé, priorités).
 - [ ] **Chat** : Interagir avec le cerveau via Open WebUI (RAG connecté).
 - [ ] **Mobile** : Raccourcis iOS pour capture rapide (Voix -> Texte).
 
