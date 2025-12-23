@@ -10,6 +10,9 @@ services:
     volumes:
       - open-webui:/app/backend/data
       - ./themes/premium.css:/app/build/static/custom.css
+      - ./themes/premium.css:/app/backend/open_webui/static/assets/custom.css
+      # Note: Try standard path too just in case
+      - ./themes/premium.css:/app/backend/open_webui/static/custom.css
     depends_on:
       - qdrant
 
