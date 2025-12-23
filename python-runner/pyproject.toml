@@ -12,6 +12,8 @@ fastapi = "^0.115.0"
 uvicorn = "^0.32.0"
 psycopg2-binary = "^2.9.10"
 requests = "^2.32.0"
+openai = "^2.14.0"
+qdrant-client = "^1.16.2"
 
 [build-system]
 requires = ["poetry-core"]
