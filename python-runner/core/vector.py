@@ -99,13 +99,15 @@ class VectorStore:
             return []
 
     def _get_embedding(self, text: str) -> Optional[List[float]]:
-        """Calls OpenAI to get vector."""
+        """Calls LLM Provider to get vector."""
         if not llm_client.is_ready(): return None
+        
+        model = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
         
         try:
             response = llm_client._client.embeddings.create(
                 input=text,
-                model="text-embedding-3-small"
+                model=model
             )
             return response.data[0].embedding
         except Exception as e:
