@@ -1,0 +1,6 @@
+services:
+  python-runner:
+    # Prod mode: automatic restart on crash
+    restart: always
+    # No volume mount (use baked code)
+    # Default command (no reload)
