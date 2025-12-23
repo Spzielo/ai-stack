@@ -10,6 +10,9 @@ class ItemType(str, Enum):
     TASK = "task"
     NOTE = "note"
     PROJECT = "project"
+    QUESTION = "question" # Providing info vs Asking info
+    CHAT = "chat"         # Casual conversation
+    DELETE = "delete"
 
 class ClassificationResult(BaseModel):
     """Structure for LLM Output"""

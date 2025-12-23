@@ -25,18 +25,19 @@ class RAGService:
             context_text = "No relevant notes found."
 
         # 2. Build Prompt
-        system_prompt = f"""You are the user's Second Brain.
-Answer the question based strictly on the Context provided below.
-If the answer is not in the context, say "I don't have that information in my memory."
+        system_prompt = f"""Tu es un expert GTD (Getting Things Done).
+Utilise le contexte suivant (tes notes/tâches) pour répondre à la question de l'utilisateur.
+Si tu ne trouves pas la réponse dans le contexte, dis-le poliment.
+Réponds TOUJOURS en Français.
 
-Context:
+Contexte:
 {context_text}
 """
         
         # 3. Call LLM (Standard completion)
         try:
              completion = llm_client._client.chat.completions.create(
-                model="gpt-4o",
+                model=llm_client._model,
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user", "content": user_query},
@@ -50,5 +51,41 @@ Context:
         except Exception as e:
             logger.error(f"RAG answer failed: {e}")
             return {"answer": "Error generating answer.", "sources": []}
+
+    def answer_stream(self, user_query: str):
+        """Retrieves context and streams response."""
+        # 1. Retrieve
+        if self.vector_store:
+            relevant_notes = self.vector_store.search(user_query)
+        else:
+            relevant_notes = []
+            
+        context_text = "\n\n".join([f"- {n.get('content', '')}" for n in relevant_notes])
+        if not context_text:
+            context_text = "Aucune note pertinente trouvée."
+
+        # 2. Build Prompt
+        system_prompt = f"""Tu es un expert GTD (Getting Things Done).
+Utilise le contexte suivant (tes notes/tâches) pour répondre à la question de l'utilisateur.
+Si tu ne trouves pas la réponse dans le contexte, dis-le poliment.
+Réponds TOUJOURS en Français.
+
+Contexte:
+{context_text}
+"""
+        
+        # 3. Stream Answer
+        full_answer = ""
+        for chunk in llm_client.chat_stream(user_query, system_prompt=system_prompt):
+            full_answer += chunk
+            yield chunk
+
+        # 4. Append Sources
+        if relevant_notes:
+            yield "\n\n**Sources :**\n"
+            for s in relevant_notes:
+                title = s.get('title', 'Note')
+                excerpt = s.get('content', '')[:50].replace("\n", " ") + "..."
+                yield f"- *{title}*: {excerpt}\n"
 
 rag_service = RAGService()

@@ -33,6 +33,31 @@ class LLMClient:
     def is_ready(self) -> bool:
         return self._client is not None
 
+    def chat_stream(self, text: str, system_prompt: str = None):
+        """Streams chat completion."""
+        if not self.is_ready():
+            yield "Brain not ready."
+            return
+
+        if not system_prompt:
+            system_prompt = "Tu es un assistant IA personnel qui sert de 'Second Cerveau'. Tu réponds EXCLUSIVEMENT en Français, de manière concise et utile."
+
+        try:
+            stream = self._client.chat.completions.create(
+                model=self._model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": text},
+                ],
+                stream=True
+            )
+            for chunk in stream:
+                if chunk.choices[0].delta.content:
+                    yield chunk.choices[0].delta.content
+        except Exception as e:
+            logger.error(f"Chat stream failed: {e}")
+            yield f"Error: {e}"
+
     def classify(self, text: str, response_model: Type[BaseModel]) -> Optional[BaseModel]:
         """
         Classifies text. Adapts to model capabilities:
@@ -45,7 +70,19 @@ class LLMClient:
             return None
 
         messages = [
-            {"role": "system", "content": "You are a GTD expert. Classify the following input. Return ONLY Valid JSON."},
+            {"role": "system", "content": """You are a Semantic Router for a Second Brain.
+Classify the user input into one of these categories:
+- 'task': Actionable items (e.g. "Buy milk", "Remind me...").
+- 'note': Information to store (e.g. "The door code is 1234", "Idea: ...").
+- 'project': Multi-step goals.
+- 'question': Requests for information from memory (e.g. "What is the code?", "Where is...").
+- 'chat': Casual conversation (e.g. "Hello", "How are you").
+- 'delete': Requests to remove items (e.g. "Delete task milk", "Forget the note about...").
+
+Return ONLY Valid JSON.
+Important: The 'summary' field must be in French.
+For 'delete' intent, the 'summary' must contain ONLY the description of the item to remove (e.g. "milk", "wifi password"), NOT the verb "delete".
+"""},
             {"role": "user", "content": text},
         ]
 

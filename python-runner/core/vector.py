@@ -37,10 +37,20 @@ class VectorStore:
         try:
             if not self._client.collection_exists(COLLECTION_NAME):
                 logger.info(f"Creating collection '{COLLECTION_NAME}'...")
+                
+                # Determine vector size dynamically
+                sample_embedding = self._get_embedding("benchmark")
+                if not sample_embedding:
+                    logger.error("Could not determine vector size. Aborting collection creation.")
+                    return
+                
+                vector_size = len(sample_embedding)
+                logger.info(f"Detected vector size: {vector_size}")
+
                 self._client.create_collection(
                     collection_name=COLLECTION_NAME,
                     vectors_config=models.VectorParams(
-                        size=VECTOR_SIZE,
+                        size=vector_size,
                         distance=models.Distance.COSINE
                     )
                 )
@@ -112,6 +122,44 @@ class VectorStore:
             return response.data[0].embedding
         except Exception as e:
             logger.error(f"Embedding failed: {e}")
+            return None
+
+    def delete_similar(self, query: str, threshold: float = 0.75) -> Optional[str]:
+        """Deletes the most similar note if confident."""
+        if not self._client: return None
+        
+        try:
+            # 1. Embed
+            embedding = self._get_embedding(query)
+            if not embedding: return None
+
+            # 2. Search Point
+            hits = self._client.query_points(
+                collection_name=COLLECTION_NAME,
+                query=embedding,
+                limit=1,
+                with_payload=True
+            ).points
+            
+            if not hits: return None
+            
+            top_hit = hits[0]
+            if top_hit.score < threshold:
+                logger.info(f"Deletion aborted: Low confidence ({top_hit.score} < {threshold})")
+                return None
+                
+            # 3. Delete
+            # Qdrant client delete via points_selector
+            self._client.delete(
+                collection_name=COLLECTION_NAME,
+                points_selector=models.PointIdsList(points=[top_hit.id])
+            )
+            logger.info(f"Deleted note {top_hit.id} (score {top_hit.score})")
+            
+            return top_hit.payload.get("content", "Note inconnue")
+
+        except Exception as e:
+            logger.error(f"Vector delete failed: {e}")
             return None
 
 vector_store = VectorStore()

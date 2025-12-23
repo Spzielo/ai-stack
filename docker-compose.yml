@@ -9,6 +9,7 @@ services:
       - .env
     volumes:
       - open-webui:/app/backend/data
+      - ./themes/premium.css:/app/build/static/custom.css
     depends_on:
       - qdrant
 
@@ -68,6 +69,13 @@ services:
       - .env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+
+  dashboard:
+    build: ./dashboard
+    container_name: dashboard
+    restart: unless-stopped
+    ports:
+      - "80:80"
 
 volumes:
   open-webui:
