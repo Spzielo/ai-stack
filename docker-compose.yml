@@ -70,6 +70,29 @@ services:
       - "127.0.0.1:8000:8000"
     env_file:
       - .env
+    volumes:
+      - ./themes/premium.css:/app/backend/data/premium.css
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.open-webui.rule=Host(`localhost`)"
+      - "traefik.http.routers.open-webui.entrypoints=web"
+
+  job-hunter:
+    build:
+      context: ./job-hunter
+    container_name: job-hunter
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./job-hunter/data:/app/data
+      - ./job-hunter/src:/app/src
+      - ./job-hunter/main.py:/app/main.py
+    environment:
+      - LLM_API_KEY=${LLM_API_KEY:-ollama}
+      - LLM_BASE_URL=${LLM_BASE_URL:-http://host.docker.internal:11434/v1}
+      - LLM_MODEL=${LLM_MODEL:-llama3.2}
     extra_hosts:
       - "host.docker.internal:host-gateway"
 

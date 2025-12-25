@@ -1,0 +1,286 @@
+[
+  {
+    "id": "3c2c8ac9-cec3-4d62-82df-278cd376ea43",
+    "timestamp": "2025-12-24T14:17:22.943039",
+    "company": "Ciclic",
+    "role": "Directeur(rice) général(e)",
+    "score": 47.5,
+    "level": "Faible ❌",
+    "offer_metadata": {
+      "company": "Ciclic",
+      "role": "Directeur(rice) général(e)",
+      "location": "Centre-Val de Loire",
+      "contract": "CDI",
+      "salary_range": "",
+      "publication_date": null
+    },
+    "match": {
+      "total_score": 47.5,
+      "level": "Faible ❌",
+      "recommendation": "⛔ Ne pas candidater",
+      "details": {
+        "experience": {
+          "score": 15.0,
+          "max_score": 30.0,
+          "details": {
+            "years_pts": 8,
+            "level_pts": 5,
+            "sector_pts": 2
+          }
+        },
+        "technical": {
+          "score": 22.5,
+          "max_score": 35.0,
+          "details": {
+            "matched": [],
+            "missing": []
+          }
+        },
+        "scope": {
+          "score": 5.0,
+          "max_score": 15.0,
+          "details": {
+            "note": "Scope estimation based on keywords"
+          }
+        },
+        "context": {
+          "score": 5.0,
+          "max_score": 10.0,
+          "details": {
+            "matches": []
+          }
+        },
+        "location": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        },
+        "bonus": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        }
+      },
+      "strengths": [],
+      "weaknesses": [],
+      "personalization_tips": []
+    },
+    "generated_content": {
+      "cv_markdown": "# Vincent Oudin\n## Directeur Régional / Directeur de Site | Expert Performance Commerciale & Opérationnelle\n**Montélimar, Rhône-Alpes, FR** | vincent.oudindupont@gmail.com | +33 6 59 03 71 67\n[LinkedIn](linkedin.com/in/vincentoudindirecteur)\n\n> **PROFIL**: Directeur de Site / Directeur Régional avec 15 ans d'expérience en pilotage d'activités complexes multi-métiers. Track record exceptionnel : TCAM de 20% sur 8 ans (CA multiplié par 10-20x), structuration d'équipes pluridisciplinaires de 25 personnes, et réduction de 6 points du taux d'attrition via transformation digitale. Expert du pilotage P&L, de la gestion multi-canaux (GMS, RHD, collectivités, DET) et de l'amélioration continue. Spécialiste des produits frais et de la distribution B2B.\n\n---\n### 🎯 MATCHING AVEC LE POSTE : Directeur(rice) général(e)\n**Verdict : ⛔ Ne pas candidater (Score: 47.5/100)**\n*Points forts :* Expertise sectorielle et fonctionnelle\n\n---\n### 💼 EXPÉRIENCE PROFESSIONNELLE\n\n### Directeur Régional / Directeur de Site | **Mericq SAS**\n*2017-01 - 2025-01 | AURA (base Montélimar), Suisse, Grand-Est*\n> *Distribution B2B de produits de la mer (ETI familiale) - Non communiqué*\n\n**Mission:** Transformer une petite structure commerciale en véritable plateforme régionale structurée. Objectifs : (1) Multiplier par 10 le CA en 5 ans, (2) Structurer une équipe pluridisciplinaire performante, (3) Professionnaliser les processus, (4) Déployer la transformation digitale, (5) Assurer une rentabilité durable, (6) Intégrer la vision Groupe Mericq.\n\n**Réalisations Clés :**\n- **Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans**: TCAM 20% | CA x15-20 | 450 clients actifs\n- **Maintien d'une rentabilité durable malgré la croissance rapide**: 18-22% MB stable | EBITDA 5-8% | -12% coûts transport\n- **Conquête de 8 enseignes GMS nationales (40% du CA)**: 8 enseignes GMS | 35-40% CA | 98,5% taux de service\n\n\n### 🛠️ COMPÉTENCES CLÉS\n- Compte d'exploitation\n- Analyse financière\n- Pilotage P&L complet (CA, marge, charges, investissements, cash)\n- Vision 360° (commercial, opérations, logistique, RH, qualité, IT)\n- Gestion de la marge\n- Gestion multi-sites (coordination, synergies)\n- Pilotage P&L\n- Budget & prévisions\n- Management de managers (encadrement de N-1, délégation)\n- Stratégie commerciale multi-canaux\n",
+      "cover_letter_markdown": "\nVincent Oudin\nvincent.oudindupont@gmail.com\n+33 6 59 03 71 67\nMontélimar, Rhône-Alpes, FR\n\nÀ l'attention du Recruteur,\nChez Ciclic\n\n**Objet : Candidature pour le poste de Directeur(rice) général(e)**\n\nMadame, Monsieur,\n\n**[ATTENTION]**\nExpert en Agroalimentaire (produits frais, surgelés, sec) avec une forte appétence pour les défis opérationnels, j'ai découvert votre offre pour le poste de Directeur(rice) général(e) avec un grand intérêt.\n\n**[INTÉRÊT]**\nVotre recherche d'un profil capable de structurer et développer l'activité résonne parfaitement avec mon parcours. J'ai noté l'importance que vous accordez à la performance.\n\n**[DÉSIR]**\nAu cours de mes 8 années d'expérience, notamment chez Mericq SAS, j'ai pu :\n- Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans\n- Maintien d'une rentabilité durable malgré la croissance rapide\n\nJe suis convaincu de pouvoir apporter la même rigueur et le même engagement à vos équipes.\n\n**[ACTION]**\nJe serais ravi de convenir d'un entretien pour vous détailler mes motivations et mon adéquation avec vos enjeux actuels.\n\nDans cette attente, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.\n\nVincent Oudin\n"
+    }
+  },
+  {
+    "id": "84ba9d36-8484-4a5e-9d55-84388758db8d",
+    "timestamp": "2025-12-24T14:17:22.940707",
+    "company": "BNP Paribas",
+    "role": "Directeur de programme",
+    "score": 47.5,
+    "level": "Faible ❌",
+    "offer_metadata": {
+      "company": "BNP Paribas",
+      "role": "Directeur de programme",
+      "location": "",
+      "contract": "CDI",
+      "salary_range": "",
+      "publication_date": null
+    },
+    "match": {
+      "total_score": 47.5,
+      "level": "Faible ❌",
+      "recommendation": "⛔ Ne pas candidater",
+      "details": {
+        "experience": {
+          "score": 15.0,
+          "max_score": 30.0,
+          "details": {
+            "years_pts": 8,
+            "level_pts": 5,
+            "sector_pts": 2
+          }
+        },
+        "technical": {
+          "score": 22.5,
+          "max_score": 35.0,
+          "details": {
+            "matched": [],
+            "missing": []
+          }
+        },
+        "scope": {
+          "score": 5.0,
+          "max_score": 15.0,
+          "details": {
+            "note": "Scope estimation based on keywords"
+          }
+        },
+        "context": {
+          "score": 5.0,
+          "max_score": 10.0,
+          "details": {
+            "matches": []
+          }
+        },
+        "location": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        },
+        "bonus": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        }
+      },
+      "strengths": [],
+      "weaknesses": [],
+      "personalization_tips": []
+    },
+    "generated_content": {
+      "cv_markdown": "# Vincent Oudin\n## Directeur Régional / Directeur de Site | Expert Performance Commerciale & Opérationnelle\n**Montélimar, Rhône-Alpes, FR** | vincent.oudindupont@gmail.com | +33 6 59 03 71 67\n[LinkedIn](linkedin.com/in/vincentoudindirecteur)\n\n> **PROFIL**: Directeur de Site / Directeur Régional avec 15 ans d'expérience en pilotage d'activités complexes multi-métiers. Track record exceptionnel : TCAM de 20% sur 8 ans (CA multiplié par 10-20x), structuration d'équipes pluridisciplinaires de 25 personnes, et réduction de 6 points du taux d'attrition via transformation digitale. Expert du pilotage P&L, de la gestion multi-canaux (GMS, RHD, collectivités, DET) et de l'amélioration continue. Spécialiste des produits frais et de la distribution B2B.\n\n---\n### 🎯 MATCHING AVEC LE POSTE : Directeur de programme\n**Verdict : ⛔ Ne pas candidater (Score: 47.5/100)**\n*Points forts :* Expertise sectorielle et fonctionnelle\n\n---\n### 💼 EXPÉRIENCE PROFESSIONNELLE\n\n### Directeur Régional / Directeur de Site | **Mericq SAS**\n*2017-01 - 2025-01 | AURA (base Montélimar), Suisse, Grand-Est*\n> *Distribution B2B de produits de la mer (ETI familiale) - Non communiqué*\n\n**Mission:** Transformer une petite structure commerciale en véritable plateforme régionale structurée. Objectifs : (1) Multiplier par 10 le CA en 5 ans, (2) Structurer une équipe pluridisciplinaire performante, (3) Professionnaliser les processus, (4) Déployer la transformation digitale, (5) Assurer une rentabilité durable, (6) Intégrer la vision Groupe Mericq.\n\n**Réalisations Clés :**\n- **Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans**: TCAM 20% | CA x15-20 | 450 clients actifs\n- **Maintien d'une rentabilité durable malgré la croissance rapide**: 18-22% MB stable | EBITDA 5-8% | -12% coûts transport\n- **Conquête de 8 enseignes GMS nationales (40% du CA)**: 8 enseignes GMS | 35-40% CA | 98,5% taux de service\n\n\n### 🛠️ COMPÉTENCES CLÉS\n- Compte d'exploitation\n- Analyse financière\n- Pilotage P&L complet (CA, marge, charges, investissements, cash)\n- Vision 360° (commercial, opérations, logistique, RH, qualité, IT)\n- Gestion de la marge\n- Gestion multi-sites (coordination, synergies)\n- Pilotage P&L\n- Budget & prévisions\n- Management de managers (encadrement de N-1, délégation)\n- Stratégie commerciale multi-canaux\n",
+      "cover_letter_markdown": "\nVincent Oudin\nvincent.oudindupont@gmail.com\n+33 6 59 03 71 67\nMontélimar, Rhône-Alpes, FR\n\nÀ l'attention du Recruteur,\nChez BNP Paribas\n\n**Objet : Candidature pour le poste de Directeur de programme**\n\nMadame, Monsieur,\n\n**[ATTENTION]**\nExpert en Agroalimentaire (produits frais, surgelés, sec) avec une forte appétence pour les défis opérationnels, j'ai découvert votre offre pour le poste de Directeur de programme avec un grand intérêt.\n\n**[INTÉRÊT]**\nVotre recherche d'un profil capable de structurer et développer l'activité résonne parfaitement avec mon parcours. J'ai noté l'importance que vous accordez à la performance.\n\n**[DÉSIR]**\nAu cours de mes 8 années d'expérience, notamment chez Mericq SAS, j'ai pu :\n- Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans\n- Maintien d'une rentabilité durable malgré la croissance rapide\n\nJe suis convaincu de pouvoir apporter la même rigueur et le même engagement à vos équipes.\n\n**[ACTION]**\nJe serais ravi de convenir d'un entretien pour vous détailler mes motivations et mon adéquation avec vos enjeux actuels.\n\nDans cette attente, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.\n\nVincent Oudin\n"
+    }
+  },
+  {
+    "id": "f420b818-9e2c-4184-87dc-d640689248a6",
+    "timestamp": "2025-12-24T14:13:02.134690",
+    "company": "Pôle emploi",
+    "role": "directeur régional",
+    "score": 49.5,
+    "level": "Faible ❌",
+    "offer_metadata": {
+      "company": "Pôle emploi",
+      "role": "directeur régional",
+      "location": "Pays de la Loire",
+      "contract": "CDI",
+      "salary_range": "",
+      "publication_date": null
+    },
+    "match": {
+      "total_score": 49.5,
+      "level": "Faible ❌",
+      "recommendation": "⛔ Ne pas candidater",
+      "details": {
+        "experience": {
+          "score": 17.0,
+          "max_score": 30.0,
+          "details": {
+            "years_pts": 5,
+            "level_pts": 10,
+            "sector_pts": 2
+          }
+        },
+        "technical": {
+          "score": 22.5,
+          "max_score": 35.0,
+          "details": {
+            "matched": [],
+            "missing": []
+          }
+        },
+        "scope": {
+          "score": 5.0,
+          "max_score": 15.0,
+          "details": {
+            "note": "Scope estimation based on keywords"
+          }
+        },
+        "context": {
+          "score": 5.0,
+          "max_score": 10.0,
+          "details": {
+            "matches": []
+          }
+        },
+        "location": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        },
+        "bonus": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        }
+      },
+      "strengths": [],
+      "weaknesses": [],
+      "personalization_tips": []
+    },
+    "generated_content": {
+      "cv_markdown": "# Vincent Oudin\n## Directeur Régional / Directeur de Site | Expert Performance Commerciale & Opérationnelle\n**Montélimar, Rhône-Alpes, FR** | vincent.oudindupont@gmail.com | +33 6 59 03 71 67\n[LinkedIn](linkedin.com/in/vincentoudindirecteur)\n\n> **PROFIL**: Directeur de Site / Directeur Régional avec 15 ans d'expérience en pilotage d'activités complexes multi-métiers. Track record exceptionnel : TCAM de 20% sur 8 ans (CA multiplié par 10-20x), structuration d'équipes pluridisciplinaires de 25 personnes, et réduction de 6 points du taux d'attrition via transformation digitale. Expert du pilotage P&L, de la gestion multi-canaux (GMS, RHD, collectivités, DET) et de l'amélioration continue. Spécialiste des produits frais et de la distribution B2B.\n\n---\n### 🎯 MATCHING AVEC LE POSTE : directeur régional\n**Verdict : ⛔ Ne pas candidater (Score: 49.5/100)**\n*Points forts :* Expertise sectorielle et fonctionnelle\n\n---\n### 💼 EXPÉRIENCE PROFESSIONNELLE\n\n### Directeur Régional / Directeur de Site | **Mericq SAS**\n*2017-01 - 2025-01 | AURA (base Montélimar), Suisse, Grand-Est*\n> *Distribution B2B de produits de la mer (ETI familiale) - Non communiqué*\n\n**Mission:** Transformer une petite structure commerciale en véritable plateforme régionale structurée. Objectifs : (1) Multiplier par 10 le CA en 5 ans, (2) Structurer une équipe pluridisciplinaire performante, (3) Professionnaliser les processus, (4) Déployer la transformation digitale, (5) Assurer une rentabilité durable, (6) Intégrer la vision Groupe Mericq.\n\n**Réalisations Clés :**\n- **Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans**: TCAM 20% | CA x15-20 | 450 clients actifs\n- **Maintien d'une rentabilité durable malgré la croissance rapide**: 18-22% MB stable | EBITDA 5-8% | -12% coûts transport\n- **Conquête de 8 enseignes GMS nationales (40% du CA)**: 8 enseignes GMS | 35-40% CA | 98,5% taux de service\n\n\n### 🛠️ COMPÉTENCES CLÉS\n- Compte d'exploitation\n- Analyse financière\n- Pilotage P&L complet (CA, marge, charges, investissements, cash)\n- Vision 360° (commercial, opérations, logistique, RH, qualité, IT)\n- Gestion de la marge\n- Gestion multi-sites (coordination, synergies)\n- Pilotage P&L\n- Budget & prévisions\n- Management de managers (encadrement de N-1, délégation)\n- Stratégie commerciale multi-canaux\n",
+      "cover_letter_markdown": "\nVincent Oudin\nvincent.oudindupont@gmail.com\n+33 6 59 03 71 67\nMontélimar, Rhône-Alpes, FR\n\nÀ l'attention du Recruteur,\nChez Pôle emploi\n\n**Objet : Candidature pour le poste de directeur régional**\n\nMadame, Monsieur,\n\n**[ATTENTION]**\nExpert en Agroalimentaire (produits frais, surgelés, sec) avec une forte appétence pour Stabilite, j'ai découvert votre offre pour le poste de directeur régional avec un grand intérêt.\n\n**[INTÉRÊT]**\nVotre recherche d'un profil capable de Diriger les opérations régionales de Pôle emploi résonne parfaitement avec mon parcours. J'ai noté l'importance que vous accordez à la performance.\n\n**[DÉSIR]**\nAu cours de mes 8 années d'expérience, notamment chez Mericq SAS, j'ai pu :\n- Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans\n- Maintien d'une rentabilité durable malgré la croissance rapide\n\nJe suis convaincu de pouvoir apporter la même rigueur et le même engagement à vos équipes.\n\n**[ACTION]**\nJe serais ravi de convenir d'un entretien pour vous détailler mes motivations et mon adéquation avec vos enjeux actuels.\n\nDans cette attente, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.\n\nVincent Oudin\n"
+    }
+  },
+  {
+    "id": "ad435c1f-788e-4991-bc97-17051aa021d3",
+    "timestamp": "2025-12-24T14:13:02.131527",
+    "company": "France Travail",
+    "role": "Directeur Régional",
+    "score": 54.5,
+    "level": "Faible ❌",
+    "offer_metadata": {
+      "company": "France Travail",
+      "role": "Directeur Régional",
+      "location": "Auvergne-Rhône-Alpes, France",
+      "contract": "CDI",
+      "salary_range": "",
+      "publication_date": null
+    },
+    "match": {
+      "total_score": 54.5,
+      "level": "Faible ❌",
+      "recommendation": "⛔ Ne pas candidater",
+      "details": {
+        "experience": {
+          "score": 17.0,
+          "max_score": 30.0,
+          "details": {
+            "years_pts": 5,
+            "level_pts": 10,
+            "sector_pts": 2
+          }
+        },
+        "technical": {
+          "score": 22.5,
+          "max_score": 35.0,
+          "details": {
+            "matched": [],
+            "missing": []
+          }
+        },
+        "scope": {
+          "score": 5.0,
+          "max_score": 15.0,
+          "details": {
+            "note": "Scope estimation based on keywords"
+          }
+        },
+        "context": {
+          "score": 5.0,
+          "max_score": 10.0,
+          "details": {
+            "matches": []
+          }
+        },
+        "location": {
+          "score": 5.0,
+          "max_score": 5.0,
+          "details": {}
+        },
+        "bonus": {
+          "score": 0.0,
+          "max_score": 5.0,
+          "details": {}
+        }
+      },
+      "strengths": [],
+      "weaknesses": [],
+      "personalization_tips": []
+    },
+    "generated_content": {
+      "cv_markdown": "# Vincent Oudin\n## Directeur Régional / Directeur de Site | Expert Performance Commerciale & Opérationnelle\n**Montélimar, Rhône-Alpes, FR** | vincent.oudindupont@gmail.com | +33 6 59 03 71 67\n[LinkedIn](linkedin.com/in/vincentoudindirecteur)\n\n> **PROFIL**: Directeur de Site / Directeur Régional avec 15 ans d'expérience en pilotage d'activités complexes multi-métiers. Track record exceptionnel : TCAM de 20% sur 8 ans (CA multiplié par 10-20x), structuration d'équipes pluridisciplinaires de 25 personnes, et réduction de 6 points du taux d'attrition via transformation digitale. Expert du pilotage P&L, de la gestion multi-canaux (GMS, RHD, collectivités, DET) et de l'amélioration continue. Spécialiste des produits frais et de la distribution B2B.\n\n---\n### 🎯 MATCHING AVEC LE POSTE : Directeur Régional\n**Verdict : ⛔ Ne pas candidater (Score: 54.5/100)**\n*Points forts :* Expertise sectorielle et fonctionnelle\n\n---\n### 💼 EXPÉRIENCE PROFESSIONNELLE\n\n### Directeur Régional / Directeur de Site | **Mericq SAS**\n*2017-01 - 2025-01 | AURA (base Montélimar), Suisse, Grand-Est*\n> *Distribution B2B de produits de la mer (ETI familiale) - Non communiqué*\n\n**Mission:** Transformer une petite structure commerciale en véritable plateforme régionale structurée. Objectifs : (1) Multiplier par 10 le CA en 5 ans, (2) Structurer une équipe pluridisciplinaire performante, (3) Professionnaliser les processus, (4) Déployer la transformation digitale, (5) Assurer une rentabilité durable, (6) Intégrer la vision Groupe Mericq.\n\n**Réalisations Clés :**\n- **Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans**: TCAM 20% | CA x15-20 | 450 clients actifs\n- **Maintien d'une rentabilité durable malgré la croissance rapide**: 18-22% MB stable | EBITDA 5-8% | -12% coûts transport\n- **Conquête de 8 enseignes GMS nationales (40% du CA)**: 8 enseignes GMS | 35-40% CA | 98,5% taux de service\n\n\n### 🛠️ COMPÉTENCES CLÉS\n- Compte d'exploitation\n- Analyse financière\n- Pilotage P&L complet (CA, marge, charges, investissements, cash)\n- Vision 360° (commercial, opérations, logistique, RH, qualité, IT)\n- Gestion de la marge\n- Gestion multi-sites (coordination, synergies)\n- Pilotage P&L\n- Budget & prévisions\n- Management de managers (encadrement de N-1, délégation)\n- Stratégie commerciale multi-canaux\n",
+      "cover_letter_markdown": "\nVincent Oudin\nvincent.oudindupont@gmail.com\n+33 6 59 03 71 67\nMontélimar, Rhône-Alpes, FR\n\nÀ l'attention du Recruteur,\nChez France Travail\n\n**Objet : Candidature pour le poste de Directeur Régional**\n\nMadame, Monsieur,\n\n**[ATTENTION]**\nExpert en Agroalimentaire (produits frais, surgelés, sec) avec une forte appétence pour Stabilite, j'ai découvert votre offre pour le poste de Directeur Régional avec un grand intérêt.\n\n**[INTÉRÊT]**\nVotre recherche d'un profil capable de Lead regional operations résonne parfaitement avec mon parcours. J'ai noté l'importance que vous accordez à la performance.\n\n**[DÉSIR]**\nAu cours de mes 8 années d'expérience, notamment chez Mericq SAS, j'ai pu :\n- Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans\n- Maintien d'une rentabilité durable malgré la croissance rapide\n\nJe suis convaincu de pouvoir apporter la même rigueur et le même engagement à vos équipes.\n\n**[ACTION]**\nJe serais ravi de convenir d'un entretien pour vous détailler mes motivations et mon adéquation avec vos enjeux actuels.\n\nDans cette attente, je vous prie d'agréer, Madame, Monsieur, l'expression de mes salutations distinguées.\n\nVincent Oudin\n"
+    }
+  }
+]

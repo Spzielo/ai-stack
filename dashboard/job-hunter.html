@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Chasseur de Tête - AI Control Center</title>
+      <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+      <style>
+            .jh-container {
+                  display: grid;
+                  grid-template-columns: 350px 1fr;
+                  gap: 2rem;
+                  max-width: 1400px;
+                  margin: 2rem auto;
+                  height: calc(100vh - 100px);
+            }
+
+            .panel {
+                  background: var(--card-bg);
+                  border: 1px solid var(--card-border);
+                  border-radius: 20px;
+                  padding: 1.5rem;
+                  backdrop-filter: blur(10px);
+                  display: flex;
+                  flex-direction: column;
+                  overflow: hidden;
+            }
+
+            .panel-header {
+                  margin-bottom: 1rem;
+                  border-bottom: 1px solid var(--card-border);
+                  padding-bottom: 0.5rem;
+            }
+
+            button {
+                  background: var(--gradient-2);
+                  color: white;
+                  border: none;
+                  padding: 0.8rem 1.5rem;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  font-weight: 700;
+                  transition: all 0.2s;
+                  width: 100%;
+            }
+
+            button:hover {
+                  opacity: 0.9;
+                  transform: translateY(-2px);
+            }
+
+            button:disabled {
+                  opacity: 0.5;
+                  cursor: not-allowed;
+            }
+
+            /* History List */
+            .history-list {
+                  overflow-y: auto;
+                  flex-grow: 1;
+                  margin-top: 1rem;
+            }
+
+            .history-item {
+                  padding: 1rem;
+                  border-bottom: 1px solid var(--card-border);
+                  cursor: pointer;
+                  transition: background 0.2s;
+            }
+
+            .history-item:hover {
+                  background: rgba(255, 255, 255, 0.05);
+            }
+
+            .history-item.active {
+                  background: rgba(127, 90, 240, 0.2);
+                  border-left: 3px solid var(--accent-color);
+            }
+
+            .item-title {
+                  font-weight: 700;
+                  font-size: 0.9rem;
+            }
+
+            .item-meta {
+                  font-size: 0.8rem;
+                  color: #94a1b2;
+                  display: flex;
+                  justify-content: space-between;
+                  margin-top: 0.3rem;
+            }
+
+            .score-badge {
+                  padding: 2px 6px;
+                  border-radius: 4px;
+                  font-size: 0.7rem;
+                  font-weight: bold;
+            }
+
+            /* Viewer */
+            .tabs {
+                  display: flex;
+                  gap: 1rem;
+                  margin-bottom: 1rem;
+            }
+
+            .tab {
+                  background: transparent;
+                  border: 1px solid var(--card-border);
+                  padding: 0.5rem 1rem;
+                  width: auto;
+                  cursor: pointer;
+            }
+
+            .tab.active {
+                  background: var(--accent-color);
+                  border-color: var(--accent-color);
+            }
+
+            .viewer-content {
+                  overflow-y: auto;
+                  flex-grow: 1;
+                  background: rgba(0, 0, 0, 0.2);
+                  padding: 2rem;
+                  border-radius: 10px;
+                  font-family: 'Arial', sans-serif;
+                  line-height: 1.6;
+            }
+
+            .viewer-content h1 {
+                  color: var(--accent-color);
+                  border-bottom: 1px solid #444;
+                  padding-bottom: 0.5rem;
+            }
+
+            .viewer-content h2 {
+                  margin-top: 1.5rem;
+                  color: #eee;
+            }
+
+            .viewer-content ul {
+                  padding-left: 1.5rem;
+            }
+
+            .viewer-content li {
+                  margin-bottom: 0.3rem;
+            }
+
+            .viewer-content blockquote {
+                  border-left: 3px solid var(--gradient-1);
+                  padding-left: 1rem;
+                  color: #ccc;
+                  margin: 1rem 0;
+            }
+      </style>
+</head>
+
+<body>
+      <div class="background-orb"></div>
+
+      <div style="padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;">
+            <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">← Retour au Cockpit</a>
+            <h1 style="margin: 0; font-size: 1.5rem;">🕵️‍♂️ Chasseur de Tête</h1>
+      </div>
+
+      <div class="jh-container">
+            <!-- Sidebar: Hunt Button + History -->
+            <div class="panel">
+                  <div class="panel-header" style="text-align: center; padding-bottom: 1.5rem;">
+                        <button onclick="launchHunt()"
+                              style="width: 100%; padding: 1rem; background: var(--accent-color); font-size: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                              <span>🏹</span> Lancer une Chasse
+                        </button>
+                        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: #94a1b2;">
+                              Scan automatique Executives (Google News)
+                        </p>
+                  </div>
+
+                  <div class="panel-header">
+                        <h3>Historique</h3>
+                  </div>
+                  <div class="history-list" id="historyList">
+                        <div style="text-align: center; color: #666; padding: 1rem;">Chargement...</div>
+                  </div>
+            </div>
+
+            <!-- Main: Viewer -->
+            <div class="panel">
+                  <div class="tabs">
+                        <button class="tab active" onclick="switchTab('cv')">CV Généré</button>
+                        <button class="tab" onclick="switchTab('cl')">Lettre de Motivation</button>
+                        <button class="tab" onclick="switchTab('analysis')">Analyse Détailée</button>
+                  </div>
+                  <div id="viewer" class="viewer-content">
+                        <div
+                              style="display: flex; align-items: center; justify-content: center; height: 100%; color: #666;">
+                              Sélectionnez une offre ou lancez une analyse pour voir le résultat.
+                        </div>
+                  </div>
+                  <div style="margin-top: 1rem; text-align: right;">
+                        <button style="width: auto; background: #2cb67d;" onclick="copyContent()">Copier le contenu
+                              📋</button>
+                  </div>
+            </div>
+      </div>
+
+      <script>
+            const API_URL = "http://localhost:8001";
+            let currentDetail = null;
+            let activeTab = 'cv';
+
+            // --- Core Functions ---
+
+            async function fetchHistory() {
+                  try {
+                        const res = await fetch(`${API_URL}/history`);
+                        const data = await res.json();
+                        renderHistory(data);
+                  } catch (e) {
+                        console.error(e);
+                        document.getElementById('historyList').innerHTML = `<div style="color:red; text-align:center">Erreur API (${e.message})</div>`;
+                  }
+            }
+
+            function renderHistory(items) {
+                  const list = document.getElementById('historyList');
+                  list.innerHTML = '';
+
+                  items.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'history-item';
+                        div.onclick = () => loadDetail(item.id);
+
+                        // Colorize score
+                        let color = '#ef4444'; // red
+                        if (item.score >= 60) color = '#f59e0b'; // orange
+                        if (item.score >= 75) color = '#2cb67d'; // green
+
+                        div.innerHTML = `
+                    <div class="item-title">${item.role || 'Poste Inconnu'}</div>
+                    <div class="item-meta">
+                        <span>${item.company || 'Entreprise Inconnue'}</span>
+                        <span class="score-badge" style="background:${color}20; color:${color}">${Math.round(item.score)}/100</span>
+                    </div>
+                `;
+                        list.appendChild(div);
+                  });
+            }
+
+            async function launchHunt() {
+                  const btn = document.querySelector('button[onclick="launchHunt()"]');
+                  const originalText = btn.innerHTML;
+                  btn.disabled = true;
+                  btn.innerHTML = "<span>⏳</span> Chasse en cours...";
+
+                  try {
+                        // Call Hunt API
+                        const res = await fetch(`${API_URL}/hunt`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({ sources: [] }) // Use defaults
+                        });
+                        const data = await res.json();
+
+                        alert(`Chasse terminée !\n${data.scanned_count} offres scannées.\nVoici le Top 20.`);
+                        await fetchHistory();
+                        if (data.top_20 && data.top_20.length > 0) {
+                              loadDetail(data.top_20[0].id);
+                        }
+
+                  } catch (e) {
+                        alert("Erreur de chasse: " + e.message);
+                  } finally {
+                        btn.disabled = false;
+                        btn.innerHTML = originalText;
+                  }
+            }
+
+            async function loadDetail(id) {
+                  try {
+                        const res = await fetch(`${API_URL}/history/${id}`);
+                        activeDetail = await res.json();
+                        renderViewer();
+                  } catch (e) {
+                        alert("Impossible de charger les détails.");
+                  }
+            }
+
+            function renderViewer() {
+                  if (!activeDetail) return;
+
+                  const viewer = document.getElementById('viewer');
+                  let content = "";
+
+                  if (activeTab === 'cv') {
+                        content = activeDetail.generated_content.cv_markdown;
+                  } else if (activeTab === 'cl') {
+                        content = activeDetail.generated_content.cover_letter_markdown;
+                  } else {
+                        // Analysis view
+                        const match = activeDetail.match;
+                        content = `## Résultats de l'Analyse\n\n`;
+                        content += `**Score Global**: ${match.total_score}/100 - ${match.level}\n`;
+                        content += `**Recommendation**: ${match.recommendation}\n\n`;
+
+                        content += `### Détails par catégorie\n`;
+                        content += `- **Expérience**: ${match.details.experience.score}/${match.details.experience.max_score}\n`;
+                        content += `- **Compétences Tech**: ${match.details.technical.score}/${match.details.technical.max_score}\n`;
+                        content += `- **Périmètre**: ${match.details.scope.score}/${match.details.scope.max_score}\n`;
+                        content += `- **Contexte**: ${match.details.context.score}/${match.details.context.max_score}\n`;
+
+                        if (match.strengths.length > 0) {
+                              content += `\n### Points Forts\n- ${match.strengths.join('\n- ')}\n`;
+                        }
+                  }
+
+                  viewer.innerHTML = marked.parse(content);
+            }
+
+            function switchTab(tab) {
+                  activeTab = tab;
+                  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                  document.querySelectorAll('.tab')[['cv', 'cl', 'analysis'].indexOf(tab)].classList.add('active');
+                  renderViewer();
+            }
+
+            function copyContent() {
+                  const viewer = document.getElementById('viewer');
+                  if (!activeDetail) return;
+
+                  let content = "";
+                  if (activeTab === 'cv') content = activeDetail.generated_content.cv_markdown;
+                  else if (activeTab === 'cl') content = activeDetail.generated_content.cover_letter_markdown;
+                  else content = viewer.innerText;
+
+                  navigator.clipboard.writeText(content).then(() => alert("Copié !"));
+            }
+
+            fetchHistory();
+      </script>
+</body>
+
+</html>

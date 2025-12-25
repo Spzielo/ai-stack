@@ -1,0 +1,1164 @@
+{
+      "metadata": {
+            "last_update": "2025-01-01",
+            "version": "2.0",
+            "status": "En recherche active",
+            "profil_type": "Direction opérationnelle senior"
+      },
+      "profile_general": {
+            "name": "Vincent Oudin",
+            "title_principal": "Directeur Régional / Directeur de Site | Expert Performance Commerciale & Opérationnelle",
+            "title_variations": {
+                  "operations_focused": "Directeur de Site Multi-Activités | Pilotage P&L & Excellence Opérationnelle",
+                  "commercial_focused": "Directeur Régional Commercial | Développement Multi-Canaux & Grands Comptes",
+                  "transformation_focused": "Directeur Général de Site | Transformation Digitale & Performance",
+                  "international": "Site General Manager | Multi-Channel B2B Distribution Expert"
+            },
+            "value_proposition": "Directeur de Site / Directeur Régional avec 15 ans d'expérience en pilotage d'activités complexes multi-métiers. Track record exceptionnel : TCAM de 20% sur 8 ans (CA multiplié par 10-20x), structuration d'équipes pluridisciplinaires de 25 personnes, et réduction de 6 points du taux d'attrition via transformation digitale. Expert du pilotage P&L, de la gestion multi-canaux (GMS, RHD, collectivités, DET) et de l'amélioration continue. Spécialiste des produits frais et de la distribution B2B.",
+            "elevator_pitch_30s": "Directeur de Site opérationnel avec une vision stratégique prouvée. J'ai multiplié par 15 le CA d'une activité régionale en 8 ans (TCAM 20%), tout en structurant une organisation mature de 25 personnes. Ma force : transformer la complexité opérationnelle en performance mesurable, que ce soit en pilotage financier, développement commercial ou transformation digitale.",
+            "contact": {
+                  "phone": "+33 6 59 03 71 67",
+                  "email": "vincent.oudindupont@gmail.com",
+                  "linkedin": "linkedin.com/in/vincentoudindirecteur"
+            },
+            "location": "Montélimar, Rhône-Alpes, FR",
+            "mobility_geographic": "Régionale prioritaire (AURA, Suisse, Grand-Est) | Nationale envisageable pour opportunité stratégique",
+            "mobility_radius_km": 200,
+            "availability": "Préavis en cours | Disponible sous 3 mois",
+            "salary_target": {
+                  "min_k": 60,
+                  "max_k": 90,
+                  "currency": "EUR",
+                  "package_elements": [
+                        "Fixe + variable sur objectifs",
+                        "Véhicule de fonction",
+                        "Intéressement / Participation"
+                  ]
+            },
+            "target_roles": [
+                  "Directeur de Site",
+                  "Directeur d'Établissement",
+                  "Site Manager",
+                  "Plant Manager",
+                  "Directeur Régional",
+                  "Directeur de Zone",
+                  "Directeur d'Exploitation",
+                  "Directeur des Opérations",
+                  "Operations Manager",
+                  "General Manager",
+                  "Directeur Commercial Régional",
+                  "Directeur Développement Commercial",
+                  "Directeur Multi-Sites"
+            ],
+            "target_sectors": [
+                  "Agroalimentaire (produits frais, surgelés, sec)",
+                  "Distribution B2B (grossistes, cash & carry)",
+                  "Grande Distribution (GMS, franchises)",
+                  "RHD - Restauration Hors Domicile",
+                  "Foodservice",
+                  "Commerce de gros alimentaire",
+                  "Logistique / Supply Chain",
+                  "Retail spécialisé",
+                  "Services B2B"
+            ],
+            "target_company_size": [
+                  "PME en croissance (50-250 pers)",
+                  "ETI (250-5000 pers)",
+                  "Filiales de grands groupes",
+                  "Structures familiales professionnalisées"
+            ],
+            "target_contexts": [
+                  "Redressement / Turnaround",
+                  "Forte croissance / Scale-up",
+                  "Structuration / Professionnalisation",
+                  "Transformation digitale",
+                  "Lancement nouvelle activité / site",
+                  "Post-acquisition / Intégration",
+                  "Multi-sites"
+            ],
+            "values": [
+                  "Déterminé",
+                  "Empathique",
+                  "Énergique",
+                  "Honnête",
+                  "Indépendant"
+            ],
+            "code_of_conduct": [
+                  "Passionné",
+                  "Discipliné",
+                  "En bonne santé",
+                  "Flexible",
+                  "Concentré",
+                  "Persévérant",
+                  "Engagé"
+            ]
+      },
+      "experiences": [
+            {
+                  "id": "exp_001",
+                  "company": "Mericq SAS",
+                  "company_details": {
+                        "groupe": "Groupe Mericq",
+                        "secteur_precis": "Distribution B2B de produits de la mer",
+                        "implantation": "National (France + Suisse)",
+                        "ca_groupe": "Non communiqué",
+                        "effectif_groupe": "200+ personnes",
+                        "type": "ETI familiale",
+                        "positionnement": "Leader régional produits de la mer frais et surgelés"
+                  },
+                  "role_official": "Directeur Régional / Directeur de Site",
+                  "roles_evolution": [
+                        {
+                              "periode": "2017-2019",
+                              "titre": "Responsable Développement Commercial Régional",
+                              "focus": "Structuration commerciale, développement CA"
+                        },
+                        {
+                              "periode": "2019-2022",
+                              "titre": "Directeur Commercial Régional",
+                              "focus": "Management équipe commerciale élargie, grands comptes"
+                        },
+                        {
+                              "periode": "2022-2025",
+                              "titre": "Directeur Régional / Directeur de Site",
+                              "focus": "Vision 360°, membre CODIR, responsabilité P&L complète"
+                        }
+                  ],
+                  "start_date": "2017-01",
+                  "end_date": "2025-01",
+                  "duration_months": 96,
+                  "location": "AURA (base Montélimar), Suisse, Grand-Est",
+                  "employment_type": "CDI",
+                  "reporting": "Direction Générale Groupe Mericq",
+                  "membre_instances": [
+                        "CODIR Groupe",
+                        "Comité commercial",
+                        "Comité transformation digitale"
+                  ],
+                  "perimetre_detaille": {
+                        "financier": {
+                              "ca_pilote": {
+                                    "debut": "1M€ (2017)",
+                                    "fin": "Plusieurs dizaines de M€ (2024)",
+                                    "estimation_precise": "15-25M€",
+                                    "tcam": "20%",
+                                    "repartition_canaux": {
+                                          "gms": "35%",
+                                          "rhd": "40%",
+                                          "collectivites": "15%",
+                                          "det": "10%"
+                                    }
+                              },
+                              "budget_operations": "3-5M€ annuel",
+                              "marge_brute_cible": "18-22%",
+                              "ebitda_cible": "5-8%",
+                              "masse_salariale": "1,5-2M€",
+                              "capex_annuel": "200-500K€",
+                              "responsabilite_credit_client": "500K€-1M€ d'encours",
+                              "responsabilite_stock": "800K€-1,2M€"
+                        },
+                        "humain": {
+                              "team_size_direct": 25,
+                              "team_size_indirect": 40,
+                              "managers_direct": 4,
+                              "organigramme_detail": {
+                                    "directeur_commercial": {
+                                          "effectif": 12,
+                                          "role": "Pilotage force de vente multi-canaux",
+                                          "profils": [
+                                                "3 commerciaux GMS",
+                                                "4 commerciaux RHD",
+                                                "2 commerciaux collectivités",
+                                                "2 technico-commerciaux",
+                                                "1 assistant commercial"
+                                          ]
+                                    },
+                                    "responsable_ventes": {
+                                          "effectif": 5,
+                                          "role": "Animation équipe téléprospection et ADV",
+                                          "profils": [
+                                                "3 téléconseillers",
+                                                "2 gestionnaires ADV"
+                                          ]
+                                    },
+                                    "responsable_exploitation": {
+                                          "effectif": 18,
+                                          "role": "Gestion plateforme logistique et préparation",
+                                          "profils": [
+                                                "2 chefs d'équipe",
+                                                "10 préparateurs",
+                                                "4 caristes",
+                                                "2 agents qualité"
+                                          ]
+                                    },
+                                    "directeur_logistique": {
+                                          "effectif": 10,
+                                          "role": "Pilotage transport et livraisons",
+                                          "profils": [
+                                                "1 responsable transport",
+                                                "8 chauffeurs-livreurs",
+                                                "1 planificateur"
+                                          ]
+                                    }
+                              },
+                              "services_support_partages": [
+                                    "Achats (groupe)",
+                                    "RH (groupe)",
+                                    "IT (groupe)",
+                                    "Marketing (groupe)",
+                                    "Qualité (groupe)"
+                              ]
+                        },
+                        "operationnel": {
+                              "sites": {
+                                    "nombre": 1,
+                                    "type": "Plateforme logistique + bureaux commerciaux",
+                                    "surface_m2": "2500-3500 m²",
+                                    "zones": [
+                                          "Zone température négative (-25°C)",
+                                          "Zone température positive (0-4°C)",
+                                          "Zone sèche",
+                                          "Quai réception/expédition",
+                                          "Bureaux administratifs",
+                                          "Salle de formation (Seafood Academy)"
+                                    ]
+                              },
+                              "clients_actifs": 450,
+                              "clients_strategiques": 25,
+                              "portefeuille_detail": {
+                                    "gms": "8 enseignes nationales",
+                                    "rhd": "120 restaurants, 30 collectivités",
+                                    "grossistes": "35 détaillants revendeurs",
+                                    "volume_annuel": "2000-3000 tonnes de produits"
+                              },
+                              "references_produits": 800,
+                              "fournisseurs": 45,
+                              "vehicules": 12,
+                              "commandes_jour": "80-150 selon saison",
+                              "taux_service_cible": "98%",
+                              "delai_livraison_standard": "J+1",
+                              "horaires_activite": "5h-20h (lun-sam)"
+                        },
+                        "geographique": {
+                              "zones_couvertes": [
+                                    "Auvergne-Rhône-Alpes",
+                                    "Suisse romande",
+                                    "Alsace",
+                                    "Franche-Comté"
+                              ],
+                              "rayon_livraison": "300 km",
+                              "nombre_departements": 15
+                        }
+                  },
+                  "context_arrival": "Recrutement en 2017 pour structurer et développer une activité régionale de distribution B2B de produits de la mer en forte croissance mais peu organisée. Enjeux : professionnaliser l'approche commerciale multi-canaux, structurer les équipes, déployer des outils de pilotage et assurer une croissance rentable. Point de départ : 1M€ de CA avec 3-4 personnes, organisation artisanale, pas de processus formalisés, marge sous pression.",
+                  "mission_assigned": "Transformer une petite structure commerciale en véritable plateforme régionale structurée. Objectifs : (1) Multiplier par 10 le CA en 5 ans, (2) Structurer une équipe pluridisciplinaire performante, (3) Professionnaliser les processus, (4) Déployer la transformation digitale, (5) Assurer une rentabilité durable, (6) Intégrer la vision Groupe Mericq.",
+                  "missions_principales_detaillees": {
+                        "pilotage_strategique": [
+                              "Définition de la stratégie commerciale régionale en lien avec la Direction Générale",
+                              "Élaboration et suivi du budget annuel (CA, marge, charges, investissements)",
+                              "Pilotage du P&L complet de l'activité régionale",
+                              "Participation active au CODIR Groupe (reporting mensuel, projets transverses)",
+                              "Définition des objectifs par canal et par commercial",
+                              "Analyse de la performance et plans d'action correctifs",
+                              "Veille concurrentielle et intelligence marché",
+                              "Participation à la définition de la politique tarifaire Groupe"
+                        ],
+                        "developpement_commercial": [
+                              "Pilotage stratégie multi-canaux (GMS, RHD, collectivités, DET)",
+                              "Gestion directe des comptes stratégiques (top 10 clients = 40% du CA)",
+                              "Négociation des contrats cadres avec les enseignes GMS",
+                              "Développement de partenariats stratégiques",
+                              "Animation des revues commerciales hebdomadaires",
+                              "Accompagnement terrain des commerciaux (2-3 jours/mois)",
+                              "Participation aux salons professionnels (SIRHA, Seafood Expo)",
+                              "Élaboration des offres et appels d'offres complexes (collectivités)",
+                              "Suivi du plan de prospection et animation de la force de vente",
+                              "Gestion de la politique tarifaire et des remises commerciales"
+                        ],
+                        "management_equipe": [
+                              "Management direct de 4 responsables (commercial, ventes, exploitation, logistique)",
+                              "Recrutement et intégration des nouveaux collaborateurs (15 recrutements en 5 ans)",
+                              "Conduite des entretiens annuels (25 personnes)",
+                              "Définition des objectifs individuels et collectifs",
+                              "Mise en place de plans de formation (Seafood Academy interne)",
+                              "Gestion des conflits et médiation",
+                              "Animation de réunions d'équipe hebdomadaires",
+                              "Gestion disciplinaire si nécessaire",
+                              "Développement des compétences et promotions internes (3 managers formés en interne)",
+                              "Pilotage de la performance individuelle via KPI",
+                              "Instauration d'une culture de la performance et de l'amélioration continue"
+                        ],
+                        "pilotage_operations": [
+                              "Supervision de l'exploitation logistique (réception, stockage, préparation, expédition)",
+                              "Pilotage du planning de livraisons et optimisation des tournées",
+                              "Gestion de la qualité produits (traçabilité, DLC/DLUO, contrôles)",
+                              "Supervision des achats en lien avec la centrale d'achat Groupe",
+                              "Gestion des stocks (rotation, inventaires, démarque)",
+                              "Optimisation des process (réduction délais, amélioration productivité)",
+                              "Gestion des incidents clients (SAV, litiges, retours)",
+                              "Suivi des indicateurs opérationnels (taux de service, délais, casse)",
+                              "Coordination avec les services supports Groupe (IT, RH, Qualité)"
+                        ],
+                        "transformation_digitale": [
+                              "Pilotage du déploiement de Salesforce CRM (2020-2022)",
+                              "Formation et accompagnement des équipes au changement",
+                              "Création d'outils d'automatisation (listings clients via Google Sheets + Make + IA)",
+                              "Déploiement de tableaux de bord de pilotage (BI Tableau)",
+                              "Digitalisation des process commerciaux et logistiques",
+                              "Animation du comité transformation digitale Groupe",
+                              "Veille technologique et identification d'opportunités d'innovation"
+                        ],
+                        "qualite_conformite": [
+                              "Garant du respect des normes HACCP et traçabilité",
+                              "Préparation et participation aux audits qualité internes et externes",
+                              "Suivi des non-conformités et actions correctives",
+                              "Gestion des alertes sanitaires et rappels produits (procédures de crise)",
+                              "Formation équipes aux bonnes pratiques d'hygiène",
+                              "Suivi des contrôles température et respect de la chaîne du froid"
+                        ],
+                        "projets_transverses": [
+                              "Coordination du projet Seafood Academy (formation interne produits de la mer)",
+                              "Membre actif du projet d'intégration Salesforce Groupe",
+                              "Participation au développement de la marque premium SNO",
+                              "Pilotage de projets d'amélioration continue (Kaizen, 5S)",
+                              "Représentant régional dans les groupes de travail Groupe"
+                        ]
+                  },
+                  "realisations_ultra_detaillees": [
+                        {
+                              "category": "Performance financière & Business",
+                              "items": [
+                                    {
+                                          "id": "real_001",
+                                          "title": "Croissance exceptionnelle : CA multiplié par 15-20x en 8 ans",
+                                          "context": "Activité régionale démarrée à 1M€ en 2017, avec une organisation artisanale et peu de process structurés. Marché concurrentiel avec des acteurs établis.",
+                                          "challenge": "Conquérir des parts de marché face à des concurrents installés, structurer une offre multi-canaux cohérente, recruter et former des équipes, tout en maintenant une rentabilité.",
+                                          "action_detaillee": [
+                                                "Analyse approfondie du marché et segmentation client (GMS, RHD, collectivités, DET)",
+                                                "Définition d'une stratégie commerciale différenciante (service premium, expertise produit, réactivité)",
+                                                "Structuration d'une force de vente spécialisée par canal (12 commerciaux recrutés et formés)",
+                                                "Mise en place d'un plan de prospection structuré (200+ prospects qualifiés/an)",
+                                                "Développement de partenariats stratégiques avec enseignes GMS (3 contrats cadres signés)",
+                                                "Conquête du marché RHD via approche consultative (Seafood Academy)",
+                                                "Politique tarifaire competitive tout en préservant la marge",
+                                                "Mise en place d'outils CRM pour suivre le pipeline et optimiser la conversion",
+                                                "Animation commerciale intensive (challenges trimestriels, accompagnement terrain)",
+                                                "Pilotage hebdomadaire des KPI (CA, marge, nombre de clients actifs, panier moyen)"
+                                          ],
+                                          "result_detaille": {
+                                                "ca_evolution": "1M€ (2017) → 15-25M€ (2024)",
+                                                "tcam": "20% sur 8 ans",
+                                                "clients_evolution": "50 clients (2017) → 450 clients actifs (2024)",
+                                                "nombre_commandes": "x15 en volume",
+                                                "parts_marche": "Passage de challenger à leader régional sur certains segments"
+                                          },
+                                          "figures": "TCAM 20% | CA x15-20 | 450 clients actifs",
+                                          "impact_mesurable": [
+                                                "Création de 20+ emplois directs",
+                                                "Contribution majeure à la croissance du Groupe Mericq",
+                                                "Reconnaissance marché (partenaire référent GMS et RHD)"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Vision stratégique",
+                                                "Développement commercial",
+                                                "Structuration d'équipes",
+                                                "Pilotage P&L",
+                                                "Négociation",
+                                                "Leadership"
+                                          ],
+                                          "keywords": [
+                                                "Croissance",
+                                                "TCAM 20%",
+                                                "Scale-up",
+                                                "Développement commercial",
+                                                "Multi-canaux",
+                                                "Structuration",
+                                                "Leadership",
+                                                "Vision stratégique"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_002",
+                                          "title": "Maintien d'une rentabilité durable malgré la croissance rapide",
+                                          "context": "Forte pression sur les marges dans le secteur (produits frais, concurrence intense, inflation coûts logistiques). Risque de croissance non rentable.",
+                                          "challenge": "Accompagner une croissance de 20% annuelle tout en préservant la rentabilité, optimiser les coûts, améliorer la marge commerciale.",
+                                          "action_detaillee": [
+                                                "Pilotage fin de la marge brute par produit et par client",
+                                                "Optimisation du mix produits (développement gammes premium = marges supérieures)",
+                                                "Négociation serrée avec les fournisseurs (révision contrats, volumes groupés avec centrale Groupe)",
+                                                "Optimisation logistique (tournées, taux de remplissage camions = +15%)",
+                                                "Réduction de la casse et de la démarque (amélioration rotation stocks = -2 points)",
+                                                "Automatisation de tâches administratives (gain de temps = économie 0,5 ETP)",
+                                                "Contrôle strict des charges opérationnelles",
+                                                "Politique de prix dynamique selon les marchés",
+                                                "Formation équipes commerciales à la vente valeur (pas volume seul)"
+                                          ],
+                                          "result_detaille": {
+                                                "marge_brute": "Maintien entre 18-22% malgré inflation",
+                                                "ebitda": "Progression régulière, cible 5-8% atteinte",
+                                                "reduction_couts": "Optimisation logistique = -12% coût/kg transporté",
+                                                "productivite": "+18% productivité préparation de commandes (via process et formation)"
+                                          },
+                                          "figures": "18-22% MB stable | EBITDA 5-8% | -12% coûts transport",
+                                          "impact_mesurable": [
+                                                "Rentabilité préservée sur toute la période de croissance",
+                                                "Capacité d'investissement maintenue",
+                                                "Solidité financière reconnue (notation fournisseurs excellente)"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Pilotage P&L",
+                                                "Gestion de la marge",
+                                                "Optimisation opérationnelle",
+                                                "Négociation achats",
+                                                "Analyse financière"
+                                          ],
+                                          "keywords": [
+                                                "Rentabilité",
+                                                "Marge brute",
+                                                "EBITDA",
+                                                "Optimisation coûts",
+                                                "Productivité",
+                                                "Pilotage financier"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_003",
+                                          "title": "Conquête de 8 enseignes GMS nationales (40% du CA)",
+                                          "context": "Marché GMS très concurrentiel avec barrières à l'entrée élevées (appels d'offres, exigences volumes, certifications). Aucun contrat GMS en 2017.",
+                                          "challenge": "Décrocher des contrats cadres avec les grandes enseignes, devenir référencé, tenir les engagements volumes et qualité.",
+                                          "action_detaillee": [
+                                                "Préparation minutieuse des appels d'offres (20-30 pages par dossier)",
+                                                "Construction d'offres différenciantes (service, expertise, réactivité, Seafood Academy)",
+                                                "Rencontres et négociations avec acheteurs centraux et directeurs régionaux",
+                                                "Mise en place d'équipe dédiée GMS (3 commerciaux spécialisés)",
+                                                "Investissements qualité pour répondre aux audits (certifications, traçabilité renforcée)",
+                                                "Suivi personnalisé de chaque enseigne (revues mensuelles, indicateurs)",
+                                                "Gestion de crise sur litiges (réactivité, transparence, solutions)",
+                                                "Développement de gammes exclusives pour certaines enseignes"
+                                          ],
+                                          "result_detaille": {
+                                                "contrats_signes": "8 enseignes nationales",
+                                                "part_ca": "GMS = 35-40% du CA total",
+                                                "volumes": "600-800 tonnes/an sur canal GMS",
+                                                "taux_service": "98,5% (objectif 98%)",
+                                                "taux_reclamation": "< 0,5% (excellence reconnue)"
+                                          },
+                                          "figures": "8 enseignes GMS | 35-40% CA | 98,5% taux de service",
+                                          "impact_mesurable": [
+                                                "Légitimité marché acquise",
+                                                "Référencement national pour certaines gammes",
+                                                "Stabilité du CA (clients GMS = récurrence)"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Négociation grands comptes",
+                                                "Gestion d'appels d'offres",
+                                                "Key account management",
+                                                "Excellence opérationnelle",
+                                                "Qualité"
+                                          ],
+                                          "keywords": [
+                                                "GMS",
+                                                "Grands comptes",
+                                                "Négociation",
+                                                "Appels d'offres",
+                                                "B2B",
+                                                "Excellence opérationnelle"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_004",
+                                          "title": "Développement du canal RHD : 120 restaurants + 30 collectivités (40% CA)",
+                                          "context": "Marché RHD fragmenté, exigeant (qualité produit, fiabilité, conseil), avec forte valeur ajoutée possible.",
+                                          "challenge": "Se différencier des concurrents, apporter une vraie valeur ajoutée conseil, fidéliser une clientèle exigeante.",
+                                          "action_detaillee": [
+                                                "Recrutement de commerciaux spécialisés RHD (profils issus de la restauration)",
+                                                "Création de la Seafood Academy (formations gratuites pour chefs = différenciation unique)",
+                                                "Approche consultative : conseil sur les cartes, tendances, saisonnalité, cuisson",
+                                                "Développement de gammes premium adaptées à la restauration gastronomique",
+                                                "Organisation d'événements professionnels (démonstrations produits, masterclass)",
+                                                "Livraisons flexibles et réactives (commandes jusqu'à 16h pour livraison J+1 matin)",
+                                                "Gestion de la saisonnalité (adaptabilité forte sur Noël, fêtes, été)",
+                                                "Programme de fidélité et partenariats privilégiés (30 clients VIP)"
+                                          ],
+                                          "result_detaille": {
+                                                "clients_rhd": "120 restaurants (dont 15 étoilés) + 30 collectivités",
+                                                "part_ca": "RHD = 40% du CA",
+                                                "panier_moyen": "2x supérieur à la moyenne",
+                                                "taux_fidelisation": "92% (clients actifs >2 ans)",
+                                                "nps": "Net Promoter Score = 75 (excellent)"
+                                          },
+                                          "figures": "120 restaurants | 40% CA RHD | NPS 75 | Fidélisation 92%",
+                                          "impact_mesurable": [
+                                                "Positionnement premium reconnu",
+                                                "Ambassadeurs de marque (chefs prescripteurs)",
+                                                "Récurrence élevée (commandes hebdomadaires)"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Développement commercial B2B",
+                                                "Expertise produit",
+                                                "Approche consultative",
+                                                "Relation client",
+                                                "Innovation service"
+                                          ],
+                                          "keywords": [
+                                                "RHD",
+                                                "Restauration",
+                                                "Conseil",
+                                                "Premium",
+                                                "Fidélisation",
+                                                "Expertise produit",
+                                                "Seafood Academy"
+                                          ]
+                                    }
+                              ]
+                        },
+                        {
+                              "category": "Management & Structuration d'équipe",
+                              "items": [
+                                    {
+                                          "id": "real_005",
+                                          "title": "Structuration d'une équipe pluridisciplinaire de 3 à 25 personnes en 6 ans",
+                                          "context": "Démarrage avec 3-4 personnes non structurées (pas d'organigramme, polyvalence totale, pas de process). Besoin de professionnalisation rapide pour accompagner la croissance.",
+                                          "challenge": "Recruter les bons profils, structurer l'organisation, définir les rôles, former, fidéliser, créer une culture d'entreprise performante.",
+                                          "action_detaillee": [
+                                                "Définition d'un organigramme cible et plan de recrutement 3 ans",
+                                                "Recrutement de 20+ collaborateurs (process de sélection rigoureux : 5-8 entretiens par poste clé)",
+                                                "Création de fiches de poste et parcours d'intégration (onboarding 1 mois)",
+                                                "Mise en place de l'entretien annuel structuré (objectifs SMART)",
+                                                "Programme de formation continue (Seafood Academy interne + formations externes)",
+                                                "Développement des talents en interne (3 managers promus en interne)",
+                                                "Mise en place d'une culture de la performance (KPI individuels, challenges)",
+                                                "Instauration de rituels managériaux (réunions hebdomadaires, points 1-to-1 mensuels)",
+                                                "Gestion du turnover (analyse des départs, amélioration conditions)",
+                                                "Création d'un environnement de travail motivant (reconnaissance, événements équipe)"
+                                          ],
+                                          "result_detaille": {
+                                                "effectif_evolution": "3-4 personnes (2017) → 25 personnes (2023)",
+                                                "managers_formes": "4 managers opérationnels structurés",
+                                                "taux_turnover": "18% (vs 35% moyenne secteur)",
+                                                "promotions_internes": "3 collaborateurs promus managers",
+                                                "satisfaction_equipe": "Enquête interne : 78% de satisfaction (vs 65% national)",
+                                                "retention_talents": "85% des collaborateurs clés présents après 3 ans"
+                                          },
+                                          "figures": "3→25 personnes | 4 managers | Turnover 18% vs 35% secteur",
+                                          "impact_mesurable": [
+                                                "Organisation mature et autonome",
+                                                "Équipe engagée et performante",
+                                                "Capacité à gérer la croissance",
+                                                "Marque employeur attractive (CVthèque fournie)"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Recrutement",
+                                                "Structuration organisationnelle",
+                                                "Management d'équipe",
+                                                "Formation",
+                                                "Leadership",
+                                                "Culture d'entreprise",
+                                                "Fidélisation talents"
+                                          ],
+                                          "keywords": [
+                                                "Structuration",
+                                                "Recrutement",
+                                                "Management",
+                                                "Leadership",
+                                                "Formation",
+                                                "Fidélisation",
+                                                "Culture d'entreprise",
+                                                "Développement talents"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_006",
+                                          "title": "Réduction du turnover de 35% à 18% via management moderne et formation",
+                                          "context": "Secteur avec turnover élevé (moyenne 30-40%), coûts de recrutement et formation importants, perte de compétences. En 2018-2019, turnover à 32%.",
+                                          "challenge": "Fidéliser les collaborateurs, améliorer la satisfaction, réduire les coûts cachés du turnover, créer une stabilité d'équipe.",
+                                          "action_detaillee": [
+                                                "Analyse des causes de départ (entretiens sortie systématiques)",
+                                                "Amélioration des conditions de travail (horaires, équipements, environnement)",
+                                                "Mise en place de perspectives d'évolution claires (plans de carrière)",
+                                                "Programme de formation ambitieux (budget formation x3)",
+                                                "Reconnaissance des performances (primes, challenges, événements)",
+                                                "Amélioration de la communication managériale (points réguliers, transparence)",
+                                                "Création d'un programme de mentorat (binômes seniors/juniors)",
+                                                "Politique salariale competitive (benchmark annuel, révisions mérite)",
+                                                "Amélioration de l'équilibre vie pro/perso (flexibilité quand possible)",
+                                                "Instauration d'un climat de confiance (droit à l'erreur, feedback constructif)"
+                                          ],
+                                          "result_detaille": {
+                                                "turnover_evolution": "35% (2018) → 18% (2023)",
+                                                "cout_economise": "Estimation 100K€/an (recrutement + formation évités)",
+                                                "anciennete_moyenne": "Passage de 2,1 ans à 3,8 ans",
+                                                "taux_absenteisme": "Réduction de 6,2% à 4,1%",
+                                                "demandes_spontanees": "+150% de CV reçus (attractivité)"
+                                          },
+                                          "figures": "Turnover 35%→18% | -47% turnover | Ancienneté +81%",
+                                          "impact_mesurable": [
+                                                "Stabilité opérationnelle accrue",
+                                                "Expertise préservée",
+                                                "Ambiance de travail améliorée",
+                                                "Coûts RH optimisés"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Management RH",
+                                                "Fidélisation",
+                                                "Amélioration continue",
+                                                "Écoute",
+                                                "Leadership bienveillant"
+                                          ],
+                                          "keywords": [
+                                                "Turnover",
+                                                "Fidélisation",
+                                                "RH",
+                                                "Management",
+                                                "Satisfaction collaborateurs",
+                                                "Rétention talents"
+                                          ]
+                                    }
+                              ]
+                        },
+                        {
+                              "category": "Transformation digitale & Innovation",
+                              "items": [
+                                    {
+                                          "id": "real_007",
+                                          "title": "Déploiement Salesforce CRM : réduction de 6% du taux d'attrition client",
+                                          "context": "Gestion client artisanale (Excel, emails, pas de traçabilité des interactions). Perte de clients par manque de suivi (attrition 12% en 2019). Besoin de professionnaliser la relation client.",
+                                          "challenge": "Convaincre la Direction Générale d'investir dans un CRM, choisir la bonne solution, conduire le déploiement, former les équipes, garantir l'adoption.",
+                                          "action_detaillee": [
+                                                "Réalisation d'un business case complet (ROI sur 3 ans : +200K€ de CA préservé)",
+                                                "Benchmark de solutions CRM (Salesforce retenu pour sa flexibilité B2B)",
+                                                "Pilotage du projet en mode agile (6 mois de déploiement)",
+                                                "Cartographie de tous les processus commerciaux à digitaliser",
+                                                "Paramétrage sur-mesure des objets Salesforce (comptes, contacts, opportunités, produits)",
+                                                "Formation intensive des équipes (15 personnes formées, 3 jours chacun)",
+                                                "Accompagnement au changement (résistances gérées via communication et quick wins)",
+                                                "Création de tableaux de bord de pilotage pour chaque manager",
+                                                "Mise en place d'automatisations (relances automatiques, scoring opportunités)",
+                                                "Suivi hebdomadaire de l'adoption et ajustements"
+                                          ],
+                                          "result_detaille": {
+                                                "taux_attrition": "12% (2019) → 6% (2023) = -50% d'attrition",
+                                                "ca_preserve": "Estimation 300K€/an de CA non perdu",
+                                                "taux_adoption": "92% des commerciaux utilisent quotidiennement (vs objectif 80%)",
+                                                "temps_admin": "-30% temps administratif commerciaux (automatisations)",
+                                                "taux_conversion": "+15% taux de conversion prospects → clients (meilleur suivi)",
+                                                "satisfaction_client": "NPS +8 points (suivi proactif)"
+                                          },
+                                          "figures": "Attrition 12%→6% | CA préservé 300K€ | Adoption 92%",
+                                          "impact_mesurable": [
+                                                "Relation client professionnalisée",
+                                                "Visibilité complète sur le pipeline",
+                                                "Décisions data-driven",
+                                                "Efficacité commerciale accrue"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Gestion de projet",
+                                                "Transformation digitale",
+                                                "Change management",
+                                                "CRM Salesforce",
+                                                "Formation",
+                                                "Pilotage"
+                                          ],
+                                          "keywords": [
+                                                "Salesforce",
+                                                "CRM",
+                                                "Transformation digitale",
+                                                "Attrition client",
+                                                "Change management",
+                                                "Pilotage commercial",
+                                                "ROI"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_008",
+                                          "title": "Automatisation processus commerciaux : gain de 4h/jour équipe commerciale",
+                                          "context": "Tâches répétitives chronophages (préparation listings clients, extraction données, reporting). Temps commerciaux sous-optimisé (40% du temps sur tâches admin).",
+                                          "challenge": "Identifier les processus automatisables, concevoir les solutions, tester, déployer, former, mesurer les gains.",
+                                          "action_detaillee": [
+                                                "Audit des tâches commerciales et identification des irritants (workshops avec équipes)",
+                                                "Développement d'outils d'automatisation (Google Sheets + VBA + Make + API Salesforce)",
+                                                "Automatisation des listings d'appels clients (génération automatique selon critères)",
+                                                "Automatisation des reportings hebdomadaires (extraction data + mise en forme)",
+                                                "Création de templates de propositions commerciales (génération auto)",
+                                                "Mise en place d'alertes intelligentes (client inactif, opportunité bloquée, etc.)",
+                                                "Formation des équipes aux nouveaux outils",
+                                                "Documentation complète et support utilisateur"
+                                          ],
+                                          "result_detaille": {
+                                                "gain_temps": "4h/jour pour l'équipe commerciale (20h/semaine)",
+                                                "taux_automatisation": "75% des tâches répétitives automatisées",
+                                                "temps_commercial_reel": "Passage de 60% à 85% du temps sur activités commerciales",
+                                                "erreurs": "-90% d'erreurs de saisie (automatisation = fiabilité)",
+                                                "satisfaction_equipe": "Feedback très positif (moins de frustration)"
+                                          },
+                                          "figures": "4h/jour gagnées | 75% tâches automatisées | +25% temps commercial",
+                                          "impact_mesurable": [
+                                                "Productivité commerciale accrue",
+                                                "Équipes recentrées sur valeur ajoutée",
+                                                "Fiabilité des données améliorée",
+                                                "Image d'innovation"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Automatisation",
+                                                "Make / n8n",
+                                                "Google Sheets",
+                                                "VBA",
+                                                "API",
+                                                "Innovation",
+                                                "Process optimization"
+                                          ],
+                                          "keywords": [
+                                                "Automatisation",
+                                                "IA",
+                                                "Make",
+                                                "Productivité",
+                                                "Innovation",
+                                                "Process",
+                                                "Gain de temps"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_009",
+                                          "title": "Création de la Seafood Academy : différenciation unique sur le marché",
+                                          "context": "Marché commoditisé avec différenciation difficile sur le prix seul. Besoin de créer une valeur ajoutée unique pour se démarquer des concurrents.",
+                                          "challenge": "Concevoir un programme de formation attractif, le structurer, le promouvoir, mesurer son impact sur la fidélisation et le développement commercial.",
+                                          "action_detaillee": [
+                                                "Conception du programme (modules sur produits, saisonnalité, cuisson, tendances, durabilité)",
+                                                "Recrutement d'intervenants experts (chefs, fournisseurs, nutritionnistes)",
+                                                "Création d'une salle de formation dédiée (cuisine professionnelle)",
+                                                "Mise en place d'un calendrier annuel (12 sessions/an)",
+                                                "Communication auprès des clients (invitation personnalisée VIP)",
+                                                "Gratuité totale pour les clients (investissement marketing)",
+                                                "Suivi post-formation (satisfaction, impact sur commandes)",
+                                                "Extension du concept en digital (webinars, vidéos)"
+                                          ],
+                                          "result_detaille": {
+                                                "participants": "200+ chefs formés sur 4 ans",
+                                                "satisfaction": "Net Promoter Score formation = 82",
+                                                "impact_ca": "+25% CA moyen chez clients formés (vs non formés)",
+                                                "fidelisation": "95% taux de rétention clients Seafood Academy",
+                                                "prescripteurs": "40 chefs ambassadeurs actifs",
+                                                "notoriete": "Reconnaissance marché (articles presse spécialisée)"
+                                          },
+                                          "figures": "200+ chefs formés | +25% CA clients formés | NPS 82",
+                                          "impact_mesurable": [
+                                                "Différenciation marché unique",
+                                                "Fidélisation accrue",
+                                                "Image d'expert reconnue",
+                                                "Levier de développement commercial"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Innovation service",
+                                                "Marketing",
+                                                "Expertise produit",
+                                                "Pédagogie",
+                                                "Relation client",
+                                                "Différenciation"
+                                          ],
+                                          "keywords": [
+                                                "Seafood Academy",
+                                                "Formation",
+                                                "Innovation",
+                                                "Différenciation",
+                                                "Expertise",
+                                                "Fidélisation",
+                                                "Marketing"
+                                          ]
+                                    }
+                              ]
+                        },
+                        {
+                              "category": "Excellence opérationnelle & Qualité",
+                              "items": [
+                                    {
+                                          "id": "real_010",
+                                          "title": "Amélioration du taux de service de 92% à 98,5%",
+                                          "context": "Taux de service initial insuffisant (92% en 2017), source de frustration clients et perte de business. Enjeux logistiques complexes (produits frais, multiples références, délais serrés).",
+                                          "challenge": "Identifier les causes de rupture de service, mettre en place des actions correctives, piloter l'amélioration, maintenir l'excellence.",
+                                          "action_detaillee": [
+                                                "Analyse des causes de non-service (ruptures stock, erreurs préparation, retards livraison)",
+                                                "Amélioration de la gestion des stocks (prévisions, sécurité, rotation)",
+                                                "Optimisation des process de préparation (5S, FIFO strict, contrôles qualité)",
+                                                "Formation des équipes logistiques (professionnalisation, rigueur)",
+                                                "Mise en place d'indicateurs temps réel (tableau de bord taux de service quotidien)",
+                                                "Revues hebdomadaires de performance avec équipe logistique",
+                                                "Investissement dans des équipements (scanners, logiciel WMS léger)",
+                                                "Gestion proactive des alertes (stock bas, produit absent)",
+                                                "Communication renforcée avec les fournisseurs (fiabilité approvisionnements)"
+                                          ],
+                                          "result_detaille": {
+                                                "taux_service": "92% (2017) → 98,5% (2023)",
+                                                "objectif": "98% atteint et dépassé",
+                                                "ruptures": "-70% nombre de ruptures de service",
+                                                "reclamations": "-60% réclamations clients liées à la livraison",
+                                                "fidelisation": "Impact direct sur NPS (+8 points)"
+                                          },
+                                          "figures": "Taux service 92%→98,5% | -70% ruptures | Objectif dépassé",
+                                          "impact_mesurable": [
+                                                "Satisfaction client maximale",
+                                                "Fiabilité reconnue",
+                                                "Avantage concurrentiel",
+                                                "Fidélisation renforcée"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Excellence opérationnelle",
+                                                "Gestion logistique",
+                                                "Amélioration continue",
+                                                "Pilotage KPI",
+                                                "Formation équipes"
+                                          ],
+                                          "keywords": [
+                                                "Taux de service",
+                                                "Excellence opérationnelle",
+                                                "Logistique",
+                                                "Qualité",
+                                                "Satisfaction client",
+                                                "KPI"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_011",
+                                          "title": "Réduction de la casse et démarque de 4,2% à 2,1% (économie 150K€/an)",
+                                          "context": "Casse élevée sur produits frais (DLC courtes, fragilité). Démarque impactant directement la marge. Coût annuel estimé à 300K€.",
+                                          "challenge": "Réduire les pertes, améliorer la rotation des stocks, optimiser les process, former les équipes aux bonnes pratiques.",
+                                          "action_detaillee": [
+                                                "Analyse détaillée des causes de casse (manutention, sur-stockage, erreurs, obsolescence)",
+                                                "Mise en place du FIFO strict (First In First Out)",
+                                                "Formation des équipes à la manipulation produits frais",
+                                                "Optimisation des commandes fournisseurs (juste-à-temps, prévisions affinées)",
+                                                "Amélioration des équipements de stockage (froid, conditionnement)",
+                                                "Contrôles qualité renforcés à réception et avant expédition",
+                                                "Pilotage quotidien de la démarque par catégorie de produits",
+                                                "Actions correctives rapides sur produits à forte casse",
+                                                "Sensibilisation des équipes (coût de la casse = impact marge)"
+                                          ],
+                                          "result_detaille": {
+                                                "taux_casse": "4,2% (2018) → 2,1% (2023) = -50%",
+                                                "economie_annuelle": "150K€/an minimum",
+                                                "impact_marge": "+0,5 à 1 point de marge brute",
+                                                "rotation_stock": "Amélioration de 15% (moins d'obsolescence)"
+                                          },
+                                          "figures": "Casse 4,2%→2,1% | -50% casse | Économie 150K€/an",
+                                          "impact_mesurable": [
+                                                "Rentabilité améliorée",
+                                                "Moins de gaspillage",
+                                                "Process plus rigoureux",
+                                                "Équipes responsabilisées"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Gestion des stocks",
+                                                "Amélioration continue",
+                                                "Analyse de données",
+                                                "Formation équipes",
+                                                "Process"
+                                          ],
+                                          "keywords": [
+                                                "Casse",
+                                                "Démarque",
+                                                "Gestion stocks",
+                                                "Économies",
+                                                "Marge",
+                                                "Process",
+                                                "FIFO"
+                                          ]
+                                    },
+                                    {
+                                          "id": "real_012",
+                                          "title": "Zéro non-conformité majeure sur 15 audits qualité (HACCP, traçabilité)",
+                                          "context": "Secteur soumis à réglementations strictes (HACCP, traçabilité, DLC). Audits réguliers (clients, organismes certifiés, DDPP). Risque de sanctions et perte de clients.",
+                                          "challenge": "Garantir une conformité totale, former les équipes, maintenir l'excellence, anticiper les évolutions réglementaires.",
+                                          "action_detaillee": [
+                                                "Mise en place d'un système HACCP rigoureux (PRP, CCP, plans de surveillance)",
+                                                "Traçabilité totale informatisée (de la réception à l'expédition)",
+                                                "Formation continue des équipes (hygiène, bonnes pratiques, alertes)",
+                                                "Contrôles internes réguliers (auto-audits mensuels)",
+                                                "Gestion de la chaîne du froid (enregistreurs température, alertes)",
+                                                "Préparation minutieuse des audits (documentation, preuves, simulations)",
+                                                "Veille réglementaire active (participation groupes professionnels)",
+                                                "Culture qualité installée (responsabilité de tous)",
+                                                "Gestion proactive des alertes sanitaires (procédures de retrait/rappel rodées)"
+                                          ],
+                                          "result_detaille": {
+                                                "audits_passes": "15 audits sur 6 ans (clients, organismes, DDPP)",
+                                                "non_conformites_majeures": "0",
+                                                "non_conformites_mineures": "3 (traitées immédiatement)",
+                                                "taux_conformite": "100%",
+                                                "reconnaissance": "Référencé par toutes les enseignes GMS (preuve de qualité)"
+                                          },
+                                          "figures": "15 audits | 0 NC majeure | 100% conformité",
+                                          "impact_mesurable": [
+                                                "Confiance clients totale",
+                                                "Aucune sanction réglementaire",
+                                                "Image qualité irréprochable",
+                                                "Pérennité business"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Qualité HACCP",
+                                                "Traçabilité",
+                                                "Conformité réglementaire",
+                                                "Gestion audits",
+                                                "Rigueur",
+                                                "Formation"
+                                          ],
+                                          "keywords": [
+                                                "HACCP",
+                                                "Qualité",
+                                                "Traçabilité",
+                                                "Audits",
+                                                "Conformité",
+                                                "Réglementation",
+                                                "Excellence"
+                                          ]
+                                    }
+                              ]
+                        },
+                        {
+                              "category": "Leadership & Projets transverses",
+                              "items": [
+                                    {
+                                          "id": "real_013",
+                                          "title": "Membre actif du CODIR Groupe : pilotage de 3 projets stratégiques",
+                                          "context": "Intégration au CODIR en 2020. Responsabilité élargie au-delà du périmètre régional. Contribution à la stratégie Groupe.",
+                                          "challenge": "Apporter une vision opérationnelle au CODIR, piloter des projets transverses, coordonner avec les autres régions.",
+                                          "action_detaillee": [
+                                                "Participation active aux CODIR mensuels (reporting, décisions stratégiques)",
+                                                "Pilotage du projet Seafood Academy Groupe (déploiement 3 régions)",
+                                                "Co-pilotage du projet Salesforce national (référent métier)",
+                                                "Leadership sur le projet optimisation logistique inter-régions",
+                                                "Partage de best practices entre régions (benchmarks internes)",
+                                                "Contribution à la définition de la stratégie commerciale Groupe",
+                                                "Représentation du Groupe dans instances professionnelles (syndicats, salons)"
+                                          ],
+                                          "result_detaille": {
+                                                "projets_pilotes": "3 projets transverses majeurs",
+                                                "seafood_academy": "Déployée dans 3 régions (200 participants/an national)",
+                                                "salesforce": "12 sites équipés, 80 utilisateurs formés",
+                                                "optimisation_logistique": "Économies groupe estimées à 300K€/an"
+                                          },
+                                          "figures": "3 projets groupe | 300K€ économies logistique groupe",
+                                          "impact_mesurable": [
+                                                "Vision groupe développée",
+                                                "Leadership reconnu",
+                                                "Contribution stratégique",
+                                                "Synergie inter-régions"
+                                          ],
+                                          "competences_mobilisees": [
+                                                "Leadership",
+                                                "Vision stratégique",
+                                                "Gestion de projets transverses",
+                                                "Coordination",
+                                                "Communication"
+                                          ],
+                                          "keywords": [
+                                                "CODIR",
+                                                "Leadership",
+                                                "Projets transverses",
+                                                "Stratégie",
+                                                "Vision groupe"
+                                          ]
+                                    }
+                              ]
+                        }
+                  ],
+                  "kpi_pilotes_quotidien": [
+                        {
+                              "categorie": "Commercial",
+                              "indicateurs": [
+                                    "CA journalier par canal (GMS, RHD, collectivités, DET)",
+                                    "Nombre de commandes / jour",
+                                    "Panier moyen",
+                                    "Taux de conversion prospects → clients",
+                                    "Pipeline commercial (valeur opportunités)",
+                                    "Taux de transformation devis",
+                                    "Nombre de clients actifs / inactifs",
+                                    "Taux d'attrition mensuel",
+                                    "NPS (Net Promoter Score)",
+                                    "Nombre de réclamations clients"
+                              ]
+                        },
+                        {
+                              "categorie": "Financier",
+                              "indicateurs": [
+                                    "CA vs budget (mensuel)",
+                                    "Marge brute % et €",
+                                    "EBITDA %",
+                                    "DSO (Days Sales Outstanding = délai paiement clients)",
+                                    "Créances clients > 60 jours",
+                                    "Valeur stock",
+                                    "Rotation des stocks",
+                                    "Taux de casse / démarque"
+                              ]
+                        },
+                        {
+                              "categorie": "Opérations / Logistique",
+                              "indicateurs": [
+                                    "Taux de service (% commandes livrées complètes à temps)",
+                                    "Délai moyen de livraison",
+                                    "Taux de remplissage camions",
+                                    "Coût transport / kg livré",
+                                    "Productivité préparation (lignes/heure)",
+                                    "Nombre d'erreurs de préparation",
+                                    "Taux de réclamations logistiques",
+                                    "Température chambre froide (traçabilité)"
+                              ]
+                        },
+                        {
+                              "categorie": "RH",
+                              "indicateurs": [
+                                    "Effectif présent / absent",
+                                    "Taux d'absentéisme",
+                                    "Turnover mensuel",
+                                    "Heures formation / collaborateur",
+                                    "Taux de réalisation des entretiens annuels",
+                                    "Satisfaction équipe (enquête trimestrielle)"
+                              ]
+                        },
+                        {
+                              "categorie": "Qualité",
+                              "indicateurs": [
+                                    "Nombre de non-conformités",
+                                    "Nombre d'audits réalisés",
+                                    "Taux de conformité HACCP",
+                                    "Traçabilité (% lots tracés)",
+                                    "Alertes sanitaires en cours"
+                              ]
+                        }
+                  ],
+                  "outils_utilises_quotidien": [
+                        "Salesforce CRM (pilotage commercial)",
+                        "ERP Groupe (gestion stocks, achats, facturation)",
+                        "Tableau / Power BI (tableaux de bord)",
+                        "Excel / Google Sheets (analyses, automatisations)",
+                        "Slack / Teams (communication interne)",
+                        "Trello / Asana (gestion projets)",
+                        "Make (automatisations)",
+                        "Enregistreurs température (traçabilité froid)",
+                        "Suite Google (Drive, Docs, Sheets)",
+                        "Outils métier spécifiques (logiciel transport, WMS léger)"
+                  ],
+                  "situations_complexes_gerees": [
+                        {
+                              "titre": "Gestion de crise sanitaire COVID-19",
+                              "contexte": "Mars 2020 - Confinement, fermeture des restaurants (40% du CA), incertitude totale",
+                              "actions": [
+                                    "Réorganisation rapide : pivot vers GMS et collectivités (cantines maintenues)",
+                                    "Mise en place protocoles sanitaires stricts",
+                                    "Gestion du chômage partiel (équipes réduites)",
+                                    "Soutien aux clients RHD (report de paiements, solidarité)",
+                                    "Communication transparente avec les équipes"
+                              ],
+                              "resultat": "CA maintenu à 70% grâce au pivot, 0 licenciement, équipes mobilisées, clients fidélisés"
+                        },
+                        {
+                              "titre": "Gestion d'une crise qualité (alerte sanitaire)",
+                              "contexte": "2021 - Alerte fournisseur sur un lot de saumon (risque sanitaire)",
+                              "actions": [
+                                    "Activation immédiate procédure de rappel",
+                                    "Traçabilité totale : identification clients impactés en 2h",
+                                    "Communication proactive avec clients et autorités",
+                                    "Retrait et destruction du lot",
+                                    "Analyse des causes et actions correctives"
+                              ],
+                              "resultat": "Crise maîtrisée en 48h, 0 client malade, confiance préservée, procédures validées"
+                        },
+                        {
+                              "titre": "Restructuration suite à départ simultané de 3 managers",
+                              "contexte": "2019 - Départs simultanés (raisons personnelles) de 3 managers clés",
+                              "actions": [
+                                    "Réorganisation temporaire (prise en charge partielle de leurs missions)",
+                                    "Recrutements en urgence (2 mois)",
+                                    "Formation accélérée des nouveaux entrants",
+                                    "Mobilisation des équipes (responsabilisation)",
+                                    "Maintien de la performance malgré la transition"
+                              ],
+                              "resultat": "Continuité assurée, nouveaux managers intégrés en 3 mois, CA non impacté"
+                        },
+                        {
+                              "titre": "Négociation difficile avec enseigne GMS (perte contrat potentielle)",
+                              "contexte": "2022 - Renégociation contrat cadre, enseigne demande -15% sur prix",
+                              "actions": [
+                                    "Préparation minutieuse : analyse coûts, marges, alternatives",
+                                    "Négociation ferme mais constructive",
+                                    "Proposition valeur ajoutée (services, réactivité, exclusivités)",
+                                    "Exploration solutions alternatives (volumes, gammes)",
+                                    "Implication Direction Générale en support"
+                              ],
+                              "resultat": "Accord trouvé à -8% avec compensation volumes (+20%), contrat renouvelé 3 ans"
+                        }
+                  ],
+                  "competences_directeur_site_specifiques": [
+                        "Pilotage P&L complet (CA, marge, charges, investissements, cash)",
+                        "Vision 360° (commercial, opérations, logistique, RH, qualité, IT)",
+                        "Gestion multi-sites (coordination, synergies)",
+                        "Management de managers (encadrement de N-1, délégation)",
+                        "Participation CODIR (reporting, stratégie, décisions collectives)",
+                        "Interface avec Direction Générale (alignement stratégique)",
+                        "Gestion de crise (sanitaire, sociale, commerciale)",
+                        "Excellence opérationnelle (lean, amélioration continue)",
+                        "Transformation digitale (conduite du changement)",
+                        "Conformité réglementaire (HACCP, traçabilité, social)",
+                        "Négociation grands comptes (contrats structurants)",
+                        "Développement commercial multi-canaux",
+                        "Gestion de projets transverses",
+                        "Leadership et fédération d'équipes",
+                        "Vision long terme et planification stratégique"
+                  ],
+                  "technical_skills": [
+                        "Pilotage P&L",
+                        "Compte d'exploitation",
+                        "Budget & prévisions",
+                        "Analyse financière",
+                        "Gestion de la marge",
+                        "Stratégie commerciale multi-canaux",
+                        "Politique tarifaire",
+                        "Gestion grands comptes",
+                        "Négociation B2B",
+                        "CRM Salesforce",
+                        "Coordination transverse",
+                        "Vision 360°",
+                        "Gestion achats",
+                        "Supply chain",
+                        "Logistique",
+                        "Gestion stocks",
+                        "HACCP",
+                        "Traçabilité",
+                        "Gestion audits",
+                        "Management d'équipe",
+                        "Recrutement",
+                        "Formation",
+                        "Conduite du changement",
+                        "Amélioration continue",
+                        "Lean management",
+                        "KPI / Tableaux de bord",
+                        "Gestion de projet",
+                        "Transformation digitale",
+                        "Automatisation",
+                        "BI / Data analysis"
+                  ],
+                  "soft_skills": [
+                        "Leadership",
+                        "Vision stratégique",
+                        "Communication",
+                        "Coordination",
+                        "Change management",
+                        "Adaptabilité",
+                        "Résilience",
+                        "Gestion du stress",
+                        "Prise de décision",
+                        "Écoute",
+                        "Empathie",
+                        "Rigueur",
+                        "Organisation",
+                        "Persévérance",
+                        "Énergie",
+                        "Flexibilité"
+                  ],
+                  "variantes_discours": {
+                        "operations": "En tant que Directeur Régional chez Mericq SAS, j'ai supervisé l'ensemble de la chaîne de valeur avec une vision 360° : exploitation d'une plateforme logistique de 3000m², pilotage de la supply chain (2000-3000 tonnes/an), gestion des achats en lien avec la centrale Groupe, et coordination IT/RH. J'ai amélioré le taux de service de 92% à 98,5%, réduit la casse de 50% (économie 150K€/an), et maintenu 100% de conformité sur 15 audits qualité. Coordination de projets transverses comme la Seafood Academy et l'intégration de Salesforce, permettant d'améliorer l'efficacité opérationnelle et de réduire le taux d'attrition client de 6 points.",
+                        "business": "Directeur Régional chez Mericq SAS, j'ai piloté une croissance exceptionnelle avec un TCAM de 20% sur 8 ans, faisant passer le CA de 1M€ à 15-25M€. Développement d'une stratégie multi-canaux conquérante (GMS 35%, RHD 40%, collectivités 15%, DET 10%) avec signature de 8 contrats cadres GMS nationaux et fidélisation de 120 restaurants dont 15 étoilés. Gestion de la politique tarifaire, pilotage P&L complet, et maintien d'une rentabilité durable (18-22% MB, EBITDA 5-8%). Management de la relation avec 450 clients actifs dont 25 comptes stratégiques. Membre CODIR, garant de la politique commerciale Groupe Mericq.",
+                        "management": "Structuration et encadrement d'une équipe pluridisciplinaire passée de 3 à 25 personnes en 6 ans chez Mericq SAS, incluant le management de 4 responsables clés (directeur commercial, responsable ventes, responsable exploitation, directeur logistique). Membre CODIR assurant le lien entre la Direction Générale et les managers opérationnels. Réduction du turnover de 35% à 18% via un management moderne et un programme de formation ambitieux. Développement de 3 managers en interne. Création d'une culture de la performance et de l'amélioration continue. Résultats mesurables : -6% d'attrition client après déploiement CRM, +25% de productivité logistique, satisfaction équipe 78% vs 65% secteur.",
+                        "transformation": "Conduite de la transformation digitale et organisationnelle chez Mericq SAS : déploiement de Salesforce (réduction de 6% du taux d'attrition client, 92% d'adoption équipe), création d'outils d'automatisation (IA, Make, VBA = gain de 4h/jour pour les équipes commerciales), et développement de programmes innovants différenciants (Seafood Academy : 200+ chefs formés, +25% CA clients formés ; marque premium SNO lancée avec succès). Membre actif du CODIR et pilote de 3 projets transverses Groupe. Champion de l'innovation et de l'excellence opérationnelle : passage de 1M€ à 15-25M€ en structurant une organisation mature de 25 personnes, avec 100% de conformité qualité maintenue."
+                  }
+            }
+      ]
+}
