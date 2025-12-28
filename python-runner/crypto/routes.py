@@ -22,6 +22,7 @@ from crypto.models import (
     EventSeverity,
     StatusChange,
 )
+from crypto.portfolio_models import PositionCreate, PositionUpdate
 from crypto import db
 from crypto.scoring import compute_all_scores
 
@@ -548,4 +549,184 @@ async def remove_from_watchlist_endpoint(symbol: str):
         raise
     except Exception as e:
         logger.error(f"Error removing from watchlist: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# --- Portfolio Endpoints ---
+
+@router.post("/portfolio/positions")
+async def create_position(request: PositionCreate):
+    """
+    Add a new portfolio position.
+    """
+    from crypto import portfolio_db
+    from crypto.portfolio_models import PositionCreate
+    
+    try:
+        # Get asset by symbol
+        asset = db.get_asset_by_symbol(request.symbol)
+        if not asset:
+            raise HTTPException(status_code=404, detail=f"Asset {request.symbol} not found")
+        
+        # Calculate invested amount
+        invested_amount = request.quantity * request.purchase_price_usd
+        
+        # Add position
+        position = portfolio_db.add_position(
+            asset_id=asset['id'],
+            quantity=request.quantity,
+            purchase_price=request.purchase_price_usd,
+            purchase_date=str(request.purchase_date),
+            notes=request.notes
+        )
+        
+        logger.info(f"Created position for {request.symbol}: {request.quantity} @ ${request.purchase_price_usd}")
+        
+        return {
+            "success": True,
+            "position": {
+                "id": position['id'],
+                "symbol": request.symbol,
+                "quantity": float(position['quantity']),
+                "purchase_price_usd": float(position['purchase_price_usd']),
+                "invested_amount_usd": float(position['invested_amount_usd']),
+                "purchase_date": str(position['purchase_date'])
+            }
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error creating position: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/portfolio/positions")
+async def get_portfolio():
+    """
+    Get all portfolio positions with current values and profit/loss calculations.
+    """
+    from crypto import portfolio_db
+    from decimal import Decimal
+    
+    try:
+        positions = portfolio_db.get_all_positions()
+        
+        portfolio_positions = []
+        total_invested = Decimal(0)
+        total_value = Decimal(0)
+        
+        for pos in positions:
+            # Get current price
+            metrics = db.get_latest_metrics(pos['asset_id'], days=1)
+            current_price = Decimal(metrics[0]['price_usd']) if metrics and metrics[0].get('price_usd') else None
+            
+            # Calculate current value and profit/loss
+            quantity = Decimal(pos['quantity'])
+            invested = Decimal(pos['invested_amount_usd'])
+            
+            if current_price:
+                current_value = quantity * current_price
+                profit_loss = current_value - invested
+                profit_loss_percent = (profit_loss / invested * 100) if invested > 0 else Decimal(0)
+            else:
+                current_value = None
+                profit_loss = None
+                profit_loss_percent = None
+            
+            portfolio_positions.append({
+                "id": pos['id'],
+                "symbol": pos['symbol'],
+                "name": pos['name'],
+                "category": pos['category'],
+                "quantity": float(quantity),
+                "purchase_price_usd": float(pos['purchase_price_usd']),
+                "current_price_usd": float(current_price) if current_price else None,
+                "invested_amount_usd": float(invested),
+                "current_value_usd": float(current_value) if current_value else None,
+                "profit_loss_usd": float(profit_loss) if profit_loss else None,
+                "profit_loss_percent": float(profit_loss_percent) if profit_loss_percent else None,
+                "purchase_date": str(pos['purchase_date']),
+                "notes": pos['notes']
+            })
+            
+            total_invested += invested
+            if current_value:
+                total_value += current_value
+        
+        # Calculate totals
+        total_profit_loss = total_value - total_invested
+        total_profit_loss_percent = (total_profit_loss / total_invested * 100) if total_invested > 0 else Decimal(0)
+        
+        return {
+            "positions": portfolio_positions,
+            "summary": {
+                "total_invested": float(total_invested),
+                "total_value": float(total_value),
+                "total_profit_loss": float(total_profit_loss),
+                "total_profit_loss_percent": float(total_profit_loss_percent)
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error getting portfolio: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.put("/portfolio/positions/{position_id}")
+async def update_position_endpoint(position_id: int, request: PositionUpdate):
+    """
+    Update an existing portfolio position.
+    """
+    from crypto import portfolio_db
+    from crypto.portfolio_models import PositionUpdate
+    
+    try:
+        position = portfolio_db.update_position(
+            position_id=position_id,
+            quantity=request.quantity,
+            purchase_price=request.purchase_price_usd,
+            purchase_date=str(request.purchase_date) if request.purchase_date else None,
+            notes=request.notes
+        )
+        
+        logger.info(f"Updated position {position_id}")
+        
+        return {
+            "success": True,
+            "position": {
+                "id": position['id'],
+                "quantity": float(position['quantity']),
+                "purchase_price_usd": float(position['purchase_price_usd']),
+                "invested_amount_usd": float(position['invested_amount_usd']),
+                "purchase_date": str(position['purchase_date'])
+            }
+        }
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+    except Exception as e:
+        logger.error(f"Error updating position: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/portfolio/positions/{position_id}")
+async def delete_position_endpoint(position_id: int):
+    """
+    Delete a portfolio position.
+    """
+    from crypto import portfolio_db
+    
+    try:
+        success = portfolio_db.delete_position(position_id)
+        
+        if not success:
+            raise HTTPException(status_code=404, detail=f"Position {position_id} not found")
+        
+        logger.info(f"Deleted position {position_id}")
+        
+        return {
+            "success": True,
+            "message": f"Position {position_id} deleted"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting position: {e}")
         raise HTTPException(status_code=500, detail=str(e))

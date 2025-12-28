@@ -240,6 +240,92 @@
                   outline: none;
                   border-color: #667eea;
             }
+
+            /* Portfolio Summary */
+            .portfolio-summary {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                  gap: 1rem;
+                  margin-bottom: 2rem;
+                  padding: 1.5rem;
+                  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+                  border: 1px solid rgba(102, 126, 234, 0.3);
+                  border-radius: 12px;
+            }
+
+            .summary-card {
+                  text-align: center;
+                  padding: 1rem;
+                  background: rgba(255, 255, 255, 0.05);
+                  border-radius: 8px;
+                  transition: transform 0.2s ease;
+            }
+
+            .summary-card:hover {
+                  transform: translateY(-2px);
+            }
+
+            .summary-card.positive {
+                  background: rgba(16, 185, 129, 0.1);
+                  border: 1px solid rgba(16, 185, 129, 0.3);
+            }
+
+            .summary-card.negative {
+                  background: rgba(239, 68, 68, 0.1);
+                  border: 1px solid rgba(239, 68, 68, 0.3);
+            }
+
+            .summary-label {
+                  font-size: 14px;
+                  color: rgba(255, 255, 255, 0.7);
+                  margin-bottom: 8px;
+            }
+
+            .summary-value {
+                  font-size: 24px;
+                  font-weight: 700;
+                  color: white;
+            }
+
+            .summary-card.positive .summary-value {
+                  color: #10b981;
+            }
+
+            .summary-card.negative .summary-value {
+                  color: #ef4444;
+            }
+
+            /* Position indicator on crypto cards */
+            .position-indicator {
+                  margin-top: 12px;
+                  padding: 8px;
+                  background: rgba(102, 126, 234, 0.1);
+                  border-left: 3px solid #667eea;
+                  border-radius: 4px;
+                  font-size: 12px;
+            }
+
+            .position-indicator .invested {
+                  color: rgba(255, 255, 255, 0.6);
+                  margin-bottom: 4px;
+            }
+
+            .position-indicator .current {
+                  color: rgba(255, 255, 255, 0.8);
+                  margin-bottom: 4px;
+            }
+
+            .position-indicator .profit {
+                  font-weight: 600;
+            }
+
+            .position-indicator .profit.positive {
+                  color: #10b981;
+            }
+
+            .position-indicator .profit.negative {
+                  color: #ef4444;
+            }
       </style>
 </head>
 
@@ -301,6 +387,22 @@
                   </div>
             </div>
 
+            <!-- Portfolio Summary -->
+            <div id="portfolioSummary" class="portfolio-summary" style="display: none;">
+                  <div class="summary-card">
+                        <div class="summary-label">💰 Investi Total</div>
+                        <div class="summary-value" id="totalInvested">$0.00</div>
+                  </div>
+                  <div class="summary-card">
+                        <div class="summary-label">📊 Valeur Actuelle</div>
+                        <div class="summary-value" id="totalValue">$0.00</div>
+                  </div>
+                  <div class="summary-card" id="profitLossCard">
+                        <div class="summary-label">📈 Gain/Perte</div>
+                        <div class="summary-value" id="totalProfitLoss">$0.00 (0%)</div>
+                  </div>
+            </div>
+
             <div class="status-bar">
                   <div class="status-item">
                         <div class="status-label">Assets suivis</div>
@@ -327,6 +429,7 @@
       <script>
             const API_BASE = 'http://localhost:8000';
             let allAssets = []; // Store all assets for client-side filtering
+            let portfolioPositions = {}; // Store positions by symbol
 
             async function loadDashboard() {
                   try {
@@ -345,6 +448,9 @@
                               .reduce((sum, a) => sum + a.total_score, 0) / allAssets.filter(a => a.total_score).length;
                         document.getElementById('avgScore').textContent = avgScore ? avgScore.toFixed(1) : '-';
 
+                        // Load portfolio
+                        await loadPortfolio();
+
                         // Apply filters
                         applyFilters();
                   } catch (error) {
@@ -354,6 +460,37 @@
                         <p style="font-size: 14px; color: rgba(255,255,255,0.6);">${error.message}</p>
                     </div>
                 `;
+                  }
+            }
+
+            async function loadPortfolio() {
+                  try {
+                        const response = await fetch(`${API_BASE}/crypto/portfolio/positions`);
+                        const data = await response.json();
+
+                        // Store positions by symbol for quick lookup
+                        portfolioPositions = {};
+                        data.positions.forEach(pos => {
+                              portfolioPositions[pos.symbol] = pos;
+                        });
+
+                        // Update portfolio summary if there are positions
+                        if (data.positions.length > 0) {
+                              document.getElementById('portfolioSummary').style.display = 'grid';
+                              document.getElementById('totalInvested').textContent = `$${data.summary.total_invested.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                              document.getElementById('totalValue').textContent = `$${data.summary.total_value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+                              const profitLoss = data.summary.total_profit_loss;
+                              const profitLossPercent = data.summary.total_profit_loss_percent;
+                              const profitLossCard = document.getElementById('profitLossCard');
+                              const profitLossText = `${profitLoss >= 0 ? '+' : ''}$${Math.abs(profitLoss).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${profitLoss >= 0 ? '+' : ''}${profitLossPercent.toFixed(2)}%)`;
+
+                              document.getElementById('totalProfitLoss').textContent = profitLossText;
+                              profitLossCard.className = 'summary-card ' + (profitLoss >= 0 ? 'positive' : 'negative');
+                        }
+                  } catch (error) {
+                        console.error('Error loading portfolio:', error);
+                        // Portfolio is optional, don't show error to user
                   }
             }
 
@@ -422,6 +559,24 @@
                               const price = asset.price_usd ? `$${asset.price_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'N/A';
                               const typeLabel = asset.tracking_type === 'top50' ? '🔝' : '⭐';
 
+                              // Check if user has a position in this asset
+                              const position = portfolioPositions[asset.symbol];
+                              let positionHTML = '';
+
+                              if (position) {
+                                    const profitLoss = position.profit_loss_usd || 0;
+                                    const profitLossPercent = position.profit_loss_percent || 0;
+                                    const profitClass = profitLoss >= 0 ? 'positive' : 'negative';
+
+                                    positionHTML = `
+                                          <div class="position-indicator">
+                                                <div class="invested">Investi: $${position.invested_amount_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                                                <div class="current">Valeur: $${(position.current_value_usd || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                                                <div class="profit ${profitClass}">${profitLoss >= 0 ? '+' : ''}$${Math.abs(profitLoss).toFixed(2)} (${profitLoss >= 0 ? '+' : ''}${profitLossPercent.toFixed(2)}%)</div>
+                                          </div>
+                                    `;
+                              }
+
                               card.innerHTML = `
                             <div style="display: flex; justify-content: space-between; align-items: start;">
                                 <div class="crypto-symbol">${asset.symbol}</div>
@@ -438,6 +593,7 @@
                                     ${asset.status || 'N/A'}
                                 </div>
                             </div>
+                            ${positionHTML}
                         `;
 
                               card.onclick = () => window.location.href = `crypto-detail.html?symbol=${asset.symbol}`;
