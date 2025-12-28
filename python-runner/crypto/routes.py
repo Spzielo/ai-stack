@@ -160,12 +160,20 @@ async def compute_scores():
 # --- Read Endpoints ---
 
 @router.get("/dashboard", response_model=DashboardResponse)
-async def get_dashboard():
+async def get_dashboard(
+    tracking_type: Optional[str] = Query(default=None, regex="^(top50|watchlist)$")
+):
     """
     Get watchlist dashboard with latest scores and events.
+    Optional filter by tracking_type: 'top50' or 'watchlist'
     """
     try:
-        assets = db.get_active_assets()
+        # Get assets with optional filter
+        if tracking_type:
+            assets = db.get_assets_by_tracking_type(tracking_type)
+        else:
+            assets = db.get_active_assets()
+        
         dashboard_assets = []
         
         for asset in assets:
@@ -195,6 +203,7 @@ async def get_dashboard():
                     symbol=asset['symbol'],
                     name=asset['name'],
                     category=asset['category'],
+                    tracking_type=asset.get("tracking_type", "watchlist"),  # Add tracking_type
                     price_usd=latest_metric['price_usd'] if latest_metric else None,
                     total_score=score['total_score'] if score else None,
                     status=score['status'] if score else None,
@@ -408,39 +417,135 @@ async def get_asset_metrics(
 async def trigger_collect():
     """
     Trigger manual data collection from CoinGecko.
-    Executes the collection script.
+    Fetches prices for all active assets (top50 + watchlist).
     """
-    import subprocess
+    import httpx
+    from datetime import date
     
     try:
         logger.info("Triggering manual data collection...")
         
-        # Execute the collection script
-        result = subprocess.run(
-            ["python", "scripts/collect_crypto_metrics.py"],
-            capture_output=True,
-            text=True,
-            timeout=30
-        )
+        # Get all active assets with their coingecko IDs
+        assets = db.get_active_assets()
         
-        if result.returncode == 0:
-            logger.info("Data collection completed successfully")
+        # Build list of coingecko IDs
+        coin_ids = []
+        asset_map = {}  # coingecko_id -> asset
+        
+        for asset in assets:
+            if asset.get('coingecko_id'):
+                coin_ids.append(asset['coingecko_id'])
+                asset_map[asset['coingecko_id']] = asset
+        
+        if not coin_ids:
             return {
-                "success": True,
-                "message": "Data collection completed successfully",
-                "output": result.stdout
+                "success": False,
+                "message": "No assets with CoinGecko IDs found",
+                "ingested": 0
             }
-        else:
-            logger.error(f"Data collection failed: {result.stderr}")
-            raise HTTPException(
-                status_code=500,
-                detail=f"Collection failed: {result.stderr}"
-            )
+        
+        # Fetch from CoinGecko (batch request)
+        url = 'https://api.coingecko.com/api/v3/coins/markets'
+        params = {
+            'vs_currency': 'usd',
+            'ids': ','.join(coin_ids),
+            'order': 'market_cap_desc',
+            'per_page': 250,
+            'page': 1
+        }
+        
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(url, params=params)
+            response.raise_for_status()
+            coingecko_data = response.json()
+        
+        logger.info(f"Received data for {len(coingecko_data)} coins from CoinGecko")
+        
+        # Build metrics payload
+        metrics = []
+        today = str(date.today())
+        
+        for coin in coingecko_data:
+            asset = asset_map.get(coin['id'])
+            if asset:
+                metrics.append(
+                    MetricDaily(
+                        asset_id=asset['id'],
+                        date=today,
+                        price_usd=coin.get('current_price'),
+                        market_cap=coin.get('market_cap'),
+                        volume_24h=coin.get('total_volume'),
+                        raw={'source': 'coingecko', 'data': coin}
+                    )
+                )
+        
+        # Ingest metrics
+        inserted, updated = db.upsert_metrics(metrics)
+        
+        logger.info(f"Data collection completed: {inserted} inserted, {updated} updated")
+        
+        return {
+            "success": True,
+            "message": "Data collection completed successfully",
+            "ingested": inserted,
+            "updated": updated,
+            "total": len(coingecko_data)
+        }
     
-    except subprocess.TimeoutExpired:
-        logger.error("Data collection timed out")
-        raise HTTPException(status_code=504, detail="Collection timed out")
+    except httpx.HTTPError as e:
+        logger.error(f"HTTP error during collection: {e}")
+        raise HTTPException(status_code=502, detail=f"CoinGecko API error: {str(e)}")
     except Exception as e:
         logger.error(f"Error triggering collection: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
+
+
+
+# --- Watchlist Management Endpoints ---
+
+@router.post("/watchlist/add")
+async def add_to_watchlist_endpoint(symbol: str, name: str, coingecko_id: str, category: str = 'Other'):
+    """
+    Add a cryptocurrency to your personal watchlist.
+    """
+    from crypto.watchlist import add_to_watchlist as add_watchlist
+    
+    try:
+        logger.info(f"Adding {symbol} to watchlist")
+        result = add_watchlist(symbol, name, coingecko_id, category)
+        
+        return {
+            "success": True,
+            "message": f"{symbol} added to watchlist",
+            "asset": result
+        }
+    except Exception as e:
+        logger.error(f"Error adding to watchlist: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.delete("/watchlist/{symbol}")
+async def remove_from_watchlist_endpoint(symbol: str):
+    """
+    Remove a cryptocurrency from your watchlist.
+    Note: This deactivates the asset but preserves historical data.
+    """
+    from crypto.watchlist import remove_from_watchlist as remove_watchlist
+    
+    try:
+        logger.info(f"Removing {symbol} from watchlist")
+        success = remove_watchlist(symbol)
+        
+        if success:
+            return {
+                "success": True,
+                "message": f"{symbol} removed from watchlist"
+            }
+        else:
+            raise HTTPException(status_code=404, detail=f"Asset {symbol} not found in watchlist")
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error removing from watchlist: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

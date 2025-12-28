@@ -180,6 +180,66 @@
             .back-btn:hover {
                   color: white;
             }
+
+            /* Override body alignment from style.css */
+            body {
+                  align-items: flex-start !important;
+                  overflow-y: auto !important;
+                  padding: 2rem 0;
+            }
+
+            .container {
+                  width: 100%;
+                  max-width: 1400px;
+                  margin: 0 auto;
+                  padding: 0 2rem;
+            }
+
+            /* Filters */
+            .filters-bar {
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid rgba(255, 255, 255, 0.1);
+                  border-radius: 12px;
+                  padding: 16px;
+                  margin-bottom: 2rem;
+                  display: flex;
+                  gap: 16px;
+                  flex-wrap: wrap;
+                  align-items: center;
+            }
+
+            .filter-group {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+            }
+
+            .filter-group label {
+                  font-size: 14px;
+                  color: rgba(255, 255, 255, 0.7);
+                  font-weight: 500;
+            }
+
+            .filter-group select,
+            .filter-group input {
+                  background: rgba(255, 255, 255, 0.1);
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  border-radius: 8px;
+                  padding: 8px 12px;
+                  color: white;
+                  font-size: 14px;
+                  min-width: 150px;
+            }
+
+            .search-group input {
+                  min-width: 200px;
+            }
+
+            .filter-group select:focus,
+            .filter-group input:focus {
+                  outline: none;
+                  border-color: #667eea;
+            }
       </style>
 </head>
 
@@ -198,6 +258,47 @@
                   <button id="updateBtn" class="update-btn" onclick="updateData()">
                         🔄 Mettre à jour
                   </button>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-bar">
+                  <div class="filter-group">
+                        <label>Type:</label>
+                        <select id="filterType" onchange="applyFilters()">
+                              <option value="">Tous</option>
+                              <option value="top50">Top 50</option>
+                              <option value="watchlist">Ma Watchlist</option>
+                        </select>
+                  </div>
+
+                  <div class="filter-group">
+                        <label>Catégorie:</label>
+                        <select id="filterCategory" onchange="applyFilters()">
+                              <option value="">Toutes</option>
+                              <option value="DeFi">DeFi</option>
+                              <option value="L1">Layer 1</option>
+                              <option value="L2">Layer 2</option>
+                              <option value="Infrastructure">Infrastructure</option>
+                              <option value="Stablecoin">Stablecoin</option>
+                              <option value="Other">Autre</option>
+                        </select>
+                  </div>
+
+                  <div class="filter-group">
+                        <label>Score:</label>
+                        <select id="filterScore" onchange="applyFilters()">
+                              <option value="">Tous</option>
+                              <option value="high">≥ 20 (ACCUMULER)</option>
+                              <option value="medium">15-20 (OBSERVER)</option>
+                              <option value="low">
+                                    < 15 (RISKOFF)</option>
+                        </select>
+                  </div>
+
+                  <div class="filter-group search-group">
+                        <label>🔍</label>
+                        <input type="text" id="searchInput" placeholder="Rechercher..." oninput="applyFilters()">
+                  </div>
             </div>
 
             <div class="status-bar">
@@ -225,37 +326,107 @@
 
       <script>
             const API_BASE = 'http://localhost:8000';
+            let allAssets = []; // Store all assets for client-side filtering
 
             async function loadDashboard() {
                   try {
                         const response = await fetch(`${API_BASE}/crypto/dashboard`);
                         const data = await response.json();
 
+                        // Store all assets
+                        allAssets = data.assets;
+
                         // Update status bar
-                        document.getElementById('totalAssets').textContent = data.assets.length;
+                        document.getElementById('totalAssets').textContent = allAssets.length;
                         document.getElementById('lastUpdate').textContent = new Date(data.updated_at).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
 
-                        const avgScore = data.assets
+                        const avgScore = allAssets
                               .filter(a => a.total_score)
-                              .reduce((sum, a) => sum + a.total_score, 0) / data.assets.filter(a => a.total_score).length;
-                        document.getElementById('avgScore').textContent = avgScore.toFixed(1);
+                              .reduce((sum, a) => sum + a.total_score, 0) / allAssets.filter(a => a.total_score).length;
+                        document.getElementById('avgScore').textContent = avgScore ? avgScore.toFixed(1) : '-';
 
-                        // Render crypto cards
-                        const content = document.getElementById('content');
-                        content.innerHTML = '<div class="crypto-grid"></div>';
-                        const grid = content.querySelector('.crypto-grid');
+                        // Apply filters
+                        applyFilters();
+                  } catch (error) {
+                        document.getElementById('content').innerHTML = `
+                    <div class="loading">
+                        <p style="color: #ef4444;">❌ Erreur de chargement</p>
+                        <p style="font-size: 14px; color: rgba(255,255,255,0.6);">${error.message}</p>
+                    </div>
+                `;
+                  }
+            }
 
-                        data.assets
-                              .sort((a, b) => (b.total_score || 0) - (a.total_score || 0))
-                              .forEach(asset => {
-                                    const card = document.createElement('div');
-                                    card.className = 'crypto-card';
+            function applyFilters() {
+                  const filterType = document.getElementById('filterType').value;
+                  const filterCategory = document.getElementById('filterCategory').value;
+                  const filterScore = document.getElementById('filterScore').value;
+                  const searchTerm = document.getElementById('searchInput').value.toLowerCase();
 
-                                    const statusClass = asset.status ? `status-${asset.status.toLowerCase()}` : 'status-observer';
-                                    const price = asset.price_usd ? `$${asset.price_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'N/A';
+                  let filtered = allAssets;
 
-                                    card.innerHTML = `
-                            <div class="crypto-symbol">${asset.symbol}</div>
+                  // Filter by type
+                  if (filterType) {
+                        filtered = filtered.filter(a => a.tracking_type === filterType);
+                  }
+
+                  // Filter by category
+                  if (filterCategory) {
+                        filtered = filtered.filter(a => a.category === filterCategory);
+                  }
+
+                  // Filter by score
+                  if (filterScore) {
+                        filtered = filtered.filter(a => {
+                              const score = a.total_score || 0;
+                              if (filterScore === 'high') return score >= 20;
+                              if (filterScore === 'medium') return score >= 15 && score < 20;
+                              if (filterScore === 'low') return score < 15;
+                              return true;
+                        });
+                  }
+
+                  // Filter by search
+                  if (searchTerm) {
+                        filtered = filtered.filter(a =>
+                              a.symbol.toLowerCase().includes(searchTerm) ||
+                              a.name.toLowerCase().includes(searchTerm)
+                        );
+                  }
+
+                  // Render filtered assets
+                  renderAssets(filtered);
+            }
+
+            function renderAssets(assets) {
+                  const content = document.getElementById('content');
+                  content.innerHTML = '<div class="crypto-grid"></div>';
+                  const grid = content.querySelector('.crypto-grid');
+
+                  if (assets.length === 0) {
+                        content.innerHTML = `
+                              <div class="loading">
+                                    <p style="color: rgba(255,255,255,0.6);">Aucun résultat trouvé</p>
+                              </div>
+                        `;
+                        return;
+                  }
+
+                  assets
+                        .sort((a, b) => (b.total_score || 0) - (a.total_score || 0))
+                        .forEach(asset => {
+                              const card = document.createElement('div');
+                              card.className = 'crypto-card';
+
+                              const statusClass = asset.status ? `status-${asset.status.toLowerCase()}` : 'status-observer';
+                              const price = asset.price_usd ? `$${asset.price_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'N/A';
+                              const typeLabel = asset.tracking_type === 'top50' ? '🔝' : '⭐';
+
+                              card.innerHTML = `
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div class="crypto-symbol">${asset.symbol}</div>
+                                <span style="font-size: 18px;" title="${asset.tracking_type === 'top50' ? 'Top 50' : 'Watchlist'}">${typeLabel}</span>
+                            </div>
                             <div class="crypto-name">${asset.name} • ${asset.category}</div>
                             <div class="crypto-price">${price}</div>
                             <div class="crypto-score">
@@ -269,17 +440,9 @@
                             </div>
                         `;
 
-                                    card.onclick = () => window.location.href = `crypto-detail.html?symbol=${asset.symbol}`;
-                                    grid.appendChild(card);
-                              });
-                  } catch (error) {
-                        document.getElementById('content').innerHTML = `
-                    <div class="loading">
-                        <p style="color: #ef4444;">❌ Erreur de chargement</p>
-                        <p style="font-size: 14px; color: rgba(255,255,255,0.6);">${error.message}</p>
-                    </div>
-                `;
-                  }
+                              card.onclick = () => window.location.href = `crypto-detail.html?symbol=${asset.symbol}`;
+                              grid.appendChild(card);
+                        });
             }
 
             async function updateData() {

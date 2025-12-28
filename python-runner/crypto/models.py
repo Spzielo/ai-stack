@@ -162,6 +162,7 @@ class DashboardAsset(BaseModel):
     symbol: str
     name: str
     category: Optional[str]
+    tracking_type: Optional[str] = "watchlist"  # Add tracking_type
     price_usd: Optional[float]
     total_score: Optional[float]
     status: Optional[Status]

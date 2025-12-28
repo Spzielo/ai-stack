@@ -38,7 +38,7 @@ def get_active_assets() -> List[dict]:
     try:
         cur.execute("""
             SELECT 
-                a.id, a.symbol, a.name, a.category, a.chain,
+                a.id, a.symbol, a.name, a.category, a.chain, a.tracking_type,
                 s.coingecko_id, s.defillama_slug, s.tokenunlocks_id,
                 s.governance_url, s.twitter_handle, s.github_url
             FROM crypto.assets a
@@ -59,11 +59,33 @@ def get_asset_by_symbol(symbol: str) -> Optional[dict]:
     
     try:
         cur.execute("""
-            SELECT id, symbol, name, category, chain, is_active
+            SELECT id, symbol, name, category, chain, is_active, tracking_type
             FROM crypto.assets
             WHERE symbol = %s
         """, (symbol,))
         return cur.fetchone()
+    finally:
+        cur.close()
+        conn.close()
+
+
+def get_assets_by_tracking_type(tracking_type: str) -> List[dict]:
+    """Get assets filtered by tracking type ('top50' or 'watchlist')."""
+    conn = get_db_connection()
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+    
+    try:
+        cur.execute("""
+            SELECT 
+                a.id, a.symbol, a.name, a.category, a.chain, a.tracking_type,
+                s.coingecko_id, s.defillama_slug, s.tokenunlocks_id,
+                s.governance_url, s.twitter_handle, s.github_url
+            FROM crypto.assets a
+            LEFT JOIN crypto.sources s ON a.id = s.asset_id
+            WHERE a.is_active = true AND a.tracking_type = %s
+            ORDER BY a.symbol
+        """, (tracking_type,))
+        return cur.fetchall()
     finally:
         cur.close()
         conn.close()

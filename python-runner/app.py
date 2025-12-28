@@ -32,6 +32,16 @@ logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(title="Brain API")
 
+# Add CORS middleware to allow requests from dashboard
+from fastapi.middleware.cors import CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Register crypto routes
 app.include_router(crypto_router)
 
