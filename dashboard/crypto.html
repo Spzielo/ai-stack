@@ -522,6 +522,7 @@
                               <option value="">Tous</option>
                               <option value="top50">Top 50</option>
                               <option value="watchlist">Ma Watchlist</option>
+                              <option value="portfolio">💼 Mon Portfolio</option>
                         </select>
                   </div>
 
@@ -680,10 +681,32 @@
                         const response = await fetch(`${API_BASE}/crypto/portfolio/positions`);
                         const data = await response.json();
 
-                        // Store positions by symbol for quick lookup
-                        portfolioPositions = {};
+                        // Store positions by symbol as arrays
+                        const positionsBySymbol = {};
                         data.positions.forEach(pos => {
-                              portfolioPositions[pos.symbol] = pos;
+                              if (!positionsBySymbol[pos.symbol]) {
+                                    positionsBySymbol[pos.symbol] = [];
+                              }
+                              positionsBySymbol[pos.symbol].push(pos);
+                        });
+
+                        // Calculate aggregated values for each symbol
+                        portfolioPositions = {};
+                        Object.keys(positionsBySymbol).forEach(symbol => {
+                              const positions = positionsBySymbol[symbol];
+                              const aggregated = {
+                                    symbol: symbol,
+                                    positions: positions, // Keep individual positions
+                                    total_quantity: positions.reduce((sum, p) => sum + p.quantity, 0),
+                                    total_invested: positions.reduce((sum, p) => sum + p.invested_amount_usd, 0),
+                                    total_current_value: positions.reduce((sum, p) => sum + (p.current_value_usd || 0), 0),
+                                    total_profit_loss: positions.reduce((sum, p) => sum + (p.profit_loss_usd || 0), 0),
+                                    count: positions.length
+                              };
+                              aggregated.total_profit_loss_percent = aggregated.total_invested > 0
+                                    ? (aggregated.total_profit_loss / aggregated.total_invested) * 100
+                                    : 0;
+                              portfolioPositions[symbol] = aggregated;
                         });
 
                         // Update portfolio summary if there are positions
@@ -699,6 +722,8 @@
 
                               document.getElementById('totalProfitLoss').textContent = profitLossText;
                               profitLossCard.className = 'summary-card ' + (profitLoss >= 0 ? 'positive' : 'negative');
+                        } else {
+                              document.getElementById('portfolioSummary').style.display = 'none';
                         }
                   } catch (error) {
                         console.error('Error loading portfolio:', error);
@@ -716,7 +741,12 @@
 
                   // Filter by type
                   if (filterType) {
-                        filtered = filtered.filter(a => a.tracking_type === filterType);
+                        if (filterType === 'portfolio') {
+                              // Show only assets with positions
+                              filtered = filtered.filter(a => portfolioPositions[a.symbol]);
+                        } else {
+                              filtered = filtered.filter(a => a.tracking_type === filterType);
+                        }
                   }
 
                   // Filter by category
@@ -776,18 +806,20 @@
                               let positionHTML = '';
 
                               if (position) {
-                                    const profitLoss = position.profit_loss_usd || 0;
-                                    const profitLossPercent = position.profit_loss_percent || 0;
+                                    const profitLoss = position.total_profit_loss || 0;
+                                    const profitLossPercent = position.total_profit_loss_percent || 0;
                                     const profitClass = profitLoss >= 0 ? 'positive' : 'negative';
+                                    const positionCount = position.count || 1;
+                                    const positionLabel = positionCount > 1 ? ` (${positionCount} positions)` : '';
 
                                     positionHTML = `
                                           <div class="position-indicator">
-                                                <div class="invested">Investi: $${position.invested_amount_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-                                                <div class="current">Valeur: $${(position.current_value_usd || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                                                <div class="invested">Investi: $${position.total_invested.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}${positionLabel}</div>
+                                                <div class="current">Valeur: $${position.total_current_value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                                                 <div class="profit ${profitClass}">${profitLoss >= 0 ? '+' : ''}$${Math.abs(profitLoss).toFixed(2)} (${profitLoss >= 0 ? '+' : ''}${profitLossPercent.toFixed(2)}%)</div>
                                                 <div class="position-actions">
-                                                      <button class="btn edit-position-btn" onclick="event.stopPropagation(); openEditModal(${position.id}, '${asset.symbol}')">✏️ Modifier</button>
-                                                      <button class="btn delete-position-btn" onclick="event.stopPropagation(); deletePosition(${position.id}, '${asset.symbol}')">🗑️ Supprimer</button>
+                                                      <button class="btn edit-position-btn" onclick="event.stopPropagation(); showPositionsList('${asset.symbol}')">📋 Gérer (${positionCount})</button>
+                                                      <button class="btn delete-position-btn" onclick="event.stopPropagation(); deleteAllPositions('${asset.symbol}')">🗑️ Supprimer</button>
                                                 </div>
                                           </div>
                                     `;
@@ -984,9 +1016,73 @@
                   }
             }
 
+            async function showPositionsList(symbol) {
+                  const aggregated = portfolioPositions[symbol];
+                  if (!aggregated || !aggregated.positions) return;
+
+                  const positions = aggregated.positions;
+
+                  // For now, if there's only one position, edit it directly
+                  if (positions.length === 1) {
+                        openEditModal(positions[0].id, symbol);
+                        return;
+                  }
+
+                  // For multiple positions, show a simple list in an alert
+                  // TODO: Create a proper modal for managing multiple positions
+                  let message = `Positions ${symbol} (${positions.length}):\n\n`;
+                  positions.forEach((pos, index) => {
+                        message += `${index + 1}. ${pos.quantity} @ $${pos.purchase_price_usd} (${pos.purchase_date})\n`;
+                        message += `   Investi: $${pos.invested_amount_usd.toFixed(2)}\n`;
+                        message += `   Valeur: $${(pos.current_value_usd || 0).toFixed(2)}\n\n`;
+                  });
+                  message += `Total investi: $${aggregated.total_invested.toFixed(2)}\n`;
+                  message += `Valeur totale: $${aggregated.total_current_value.toFixed(2)}`;
+
+                  alert(message);
+
+                  // Offer to edit the first position
+                  if (confirm('Voulez-vous modifier la première position ?')) {
+                        openEditModal(positions[0].id, symbol);
+                  }
+            }
+
+            async function deleteAllPositions(symbol) {
+                  const aggregated = portfolioPositions[symbol];
+                  if (!aggregated || !aggregated.positions) return;
+
+                  const count = aggregated.positions.length;
+                  const confirmMsg = count > 1
+                        ? `Supprimer toutes les ${count} positions ${symbol} ?`
+                        : `Supprimer la position ${symbol} ?`;
+
+                  if (!confirm(confirmMsg)) return;
+
+                  try {
+                        // Delete all positions for this symbol
+                        await Promise.all(aggregated.positions.map(pos =>
+                              fetch(`${API_BASE}/crypto/portfolio/positions/${pos.id}`, { method: 'DELETE' })
+                        ));
+
+                        await loadPortfolio();
+                        applyFilters();
+                        alert(`✅ ${count} position(s) ${symbol} supprimée(s)`);
+                  } catch (error) {
+                        console.error('Error deleting positions:', error);
+                        alert(`❌ Erreur lors de la suppression`);
+                  }
+            }
+
             function openEditModal(positionId, symbol) {
-                  // Get position data
-                  const position = portfolioPositions[symbol];
+                  // Get aggregated position data
+                  const aggregated = portfolioPositions[symbol];
+                  if (!aggregated || !aggregated.positions) {
+                        alert('❌ Position introuvable');
+                        return;
+                  }
+
+                  // Find the specific position by ID
+                  const position = aggregated.positions.find(p => p.id === positionId);
                   if (!position) {
                         alert('❌ Position introuvable');
                         return;
