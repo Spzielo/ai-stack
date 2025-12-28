@@ -71,6 +71,22 @@ def update_position(position_id: int, quantity: Optional[Decimal] = None,
     cur = conn.cursor(cursor_factory=RealDictCursor)
     
     try:
+        # Get current position to calculate invested_amount if needed
+        if quantity is not None or purchase_price is not None:
+            cur.execute("""
+                SELECT quantity, purchase_price_usd 
+                FROM crypto.positions 
+                WHERE id = %s
+            """, (position_id,))
+            current = cur.fetchone()
+            if not current:
+                raise ValueError(f"Position {position_id} not found")
+            
+            # Use new values if provided, otherwise keep current
+            final_quantity = quantity if quantity is not None else current['quantity']
+            final_price = purchase_price if purchase_price is not None else current['purchase_price_usd']
+            invested_amount = final_quantity * final_price
+        
         # Build dynamic update query
         updates = []
         params = []
@@ -91,9 +107,10 @@ def update_position(position_id: int, quantity: Optional[Decimal] = None,
             updates.append("notes = %s")
             params.append(notes)
         
-        # Recalculate invested_amount if quantity or price changed
+        # Update invested_amount if quantity or price changed
         if quantity is not None or purchase_price is not None:
-            updates.append("invested_amount_usd = quantity * purchase_price_usd")
+            updates.append("invested_amount_usd = %s")
+            params.append(invested_amount)
         
         updates.append("updated_at = NOW()")
         params.append(position_id)

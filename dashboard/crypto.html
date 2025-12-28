@@ -326,6 +326,174 @@
             .position-indicator .profit.negative {
                   color: #ef4444;
             }
+
+            /* Modal for adding positions */
+            .modal {
+                  display: none;
+                  position: fixed;
+                  z-index: 1000;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: rgba(0, 0, 0, 0.7);
+                  backdrop-filter: blur(5px);
+            }
+
+            .modal-content {
+                  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                  margin: 5% auto;
+                  padding: 2rem;
+                  border: 1px solid rgba(102, 126, 234, 0.3);
+                  border-radius: 16px;
+                  width: 90%;
+                  max-width: 500px;
+                  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            }
+
+            .modal-header {
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 1.5rem;
+            }
+
+            .modal-header h2 {
+                  color: white;
+                  margin: 0;
+            }
+
+            .close-btn {
+                  color: rgba(255, 255, 255, 0.6);
+                  font-size: 28px;
+                  font-weight: bold;
+                  cursor: pointer;
+                  transition: color 0.3s ease;
+            }
+
+            .close-btn:hover {
+                  color: white;
+            }
+
+            .form-group {
+                  margin-bottom: 1.5rem;
+            }
+
+            .form-group label {
+                  display: block;
+                  color: rgba(255, 255, 255, 0.8);
+                  margin-bottom: 0.5rem;
+                  font-size: 14px;
+            }
+
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                  width: 100%;
+                  padding: 12px;
+                  background: rgba(255, 255, 255, 0.1);
+                  border: 1px solid rgba(255, 255, 255, 0.2);
+                  border-radius: 8px;
+                  color: white;
+                  font-size: 14px;
+                  box-sizing: border-box;
+            }
+
+            .form-group input:focus,
+            .form-group select:focus,
+            .form-group textarea:focus {
+                  outline: none;
+                  border-color: #667eea;
+            }
+
+            .btn {
+                  padding: 12px 24px;
+                  border: none;
+                  border-radius: 8px;
+                  font-size: 14px;
+                  font-weight: 600;
+                  cursor: pointer;
+                  transition: all 0.3s ease;
+            }
+
+            .btn-primary {
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white;
+            }
+
+            .btn-primary:hover {
+                  transform: translateY(-2px);
+                  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            }
+
+            .btn-secondary {
+                  background: rgba(255, 255, 255, 0.1);
+                  color: white;
+                  margin-left: 10px;
+            }
+
+            .btn-secondary:hover {
+                  background: rgba(255, 255, 255, 0.2);
+            }
+
+            .add-position-btn {
+                  position: fixed;
+                  bottom: 2rem;
+                  right: 2rem;
+                  width: 60px;
+                  height: 60px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white;
+                  font-size: 24px;
+                  border: none;
+                  cursor: pointer;
+                  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+                  transition: all 0.3s ease;
+                  z-index: 100;
+            }
+
+            .add-position-btn:hover {
+                  transform: scale(1.1);
+                  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+            }
+
+            .delete-position-btn {
+                  background: rgba(239, 68, 68, 0.2);
+                  color: #ef4444;
+                  border: 1px solid #ef4444;
+                  padding: 4px 8px;
+                  font-size: 12px;
+                  margin-top: 8px;
+                  width: 48%;
+                  display: inline-block;
+            }
+
+            .delete-position-btn:hover {
+                  background: rgba(239, 68, 68, 0.3);
+            }
+
+            .edit-position-btn {
+                  background: rgba(102, 126, 234, 0.2);
+                  color: #667eea;
+                  border: 1px solid #667eea;
+                  padding: 4px 8px;
+                  font-size: 12px;
+                  margin-top: 8px;
+                  width: 48%;
+                  display: inline-block;
+                  cursor: pointer;
+            }
+
+            .edit-position-btn:hover {
+                  background: rgba(102, 126, 234, 0.3);
+            }
+
+            .position-actions {
+                  display: flex;
+                  gap: 4%;
+                  margin-top: 8px;
+            }
       </style>
 </head>
 
@@ -425,6 +593,50 @@
                   </div>
             </div>
       </div>
+
+      <!-- Add Position Modal -->
+      <div id="positionModal" class="modal">
+            <div class="modal-content">
+                  <div class="modal-header">
+                        <h2 id="modalTitle">➕ Ajouter une Position</h2>
+                        <span class="close-btn" onclick="closeModal()">&times;</span>
+                  </div>
+                  <form id="positionForm" onsubmit="submitPosition(event)">
+                        <input type="hidden" id="positionId">
+                        <div class="form-group">
+                              <label>Crypto *</label>
+                              <select id="symbolSelect" required>
+                                    <option value="">Sélectionner...</option>
+                              </select>
+                        </div>
+                        <div class="form-group">
+                              <label>Quantité *</label>
+                              <input type="number" id="quantityInput" step="0.00000001" min="0" required
+                                    placeholder="Ex: 0.5">
+                        </div>
+                        <div class="form-group">
+                              <label>Prix d'achat (USD) *</label>
+                              <input type="number" id="priceInput" step="0.01" min="0" required
+                                    placeholder="Ex: 2000.00">
+                        </div>
+                        <div class="form-group">
+                              <label>Date d'achat *</label>
+                              <input type="date" id="dateInput" required>
+                        </div>
+                        <div class="form-group">
+                              <label>Notes (optionnel)</label>
+                              <textarea id="notesInput" rows="3" placeholder="Ex: Achat DCA mensuel"></textarea>
+                        </div>
+                        <div>
+                              <button type="submit" class="btn btn-primary" id="submitBtn">Ajouter</button>
+                              <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+                        </div>
+                  </form>
+            </div>
+      </div>
+
+      <!-- Floating Add Button -->
+      <button class="add-position-btn" onclick="openModal()" title="Ajouter une position">+</button>
 
       <script>
             const API_BASE = 'http://localhost:8000';
@@ -573,6 +785,10 @@
                                                 <div class="invested">Investi: $${position.invested_amount_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                                                 <div class="current">Valeur: $${(position.current_value_usd || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                                                 <div class="profit ${profitClass}">${profitLoss >= 0 ? '+' : ''}$${Math.abs(profitLoss).toFixed(2)} (${profitLoss >= 0 ? '+' : ''}${profitLossPercent.toFixed(2)}%)</div>
+                                                <div class="position-actions">
+                                                      <button class="btn edit-position-btn" onclick="event.stopPropagation(); openEditModal(${position.id}, '${asset.symbol}')">✏️ Modifier</button>
+                                                      <button class="btn delete-position-btn" onclick="event.stopPropagation(); deletePosition(${position.id}, '${asset.symbol}')">🗑️ Supprimer</button>
+                                                </div>
                                           </div>
                                     `;
                               }
@@ -652,6 +868,188 @@
 
             // Auto-refresh every 60 seconds
             setInterval(loadDashboard, 60000);
+
+            // Modal functions
+            function openModal() {
+                  // Reset to add mode
+                  document.getElementById('positionId').value = '';
+                  document.getElementById('modalTitle').textContent = '➕ Ajouter une Position';
+                  document.getElementById('submitBtn').textContent = 'Ajouter';
+                  document.getElementById('symbolSelect').disabled = false;
+
+                  document.getElementById('positionModal').style.display = 'block';
+                  populateCryptoSelect();
+                  // Set default date to today
+                  document.getElementById('dateInput').valueAsDate = new Date();
+            }
+
+            function closeModal() {
+                  document.getElementById('positionModal').style.display = 'none';
+                  document.getElementById('positionForm').reset();
+                  document.getElementById('positionId').value = '';
+                  document.getElementById('symbolSelect').disabled = false;
+            }
+
+            function populateCryptoSelect() {
+                  const select = document.getElementById('symbolSelect');
+                  select.innerHTML = '<option value="">Sélectionner...</option>';
+
+                  // Sort assets alphabetically
+                  const sortedAssets = [...allAssets].sort((a, b) => a.symbol.localeCompare(b.symbol));
+
+                  sortedAssets.forEach(asset => {
+                        const option = document.createElement('option');
+                        option.value = asset.symbol;
+                        option.textContent = `${asset.symbol} - ${asset.name}`;
+                        select.appendChild(option);
+                  });
+            }
+
+            async function submitPosition(event) {
+                  event.preventDefault();
+
+                  const positionId = document.getElementById('positionId').value;
+                  const symbol = document.getElementById('symbolSelect').value;
+                  const quantity = parseFloat(document.getElementById('quantityInput').value);
+                  const price = parseFloat(document.getElementById('priceInput').value);
+                  const date = document.getElementById('dateInput').value;
+                  const notes = document.getElementById('notesInput').value;
+
+                  // Determine if we're adding or updating
+                  if (positionId) {
+                        await updatePosition(positionId, symbol, quantity, price, date, notes);
+                  } else {
+                        await addPosition(symbol, quantity, price, date, notes);
+                  }
+            }
+
+            async function addPosition(symbol, quantity, price, date, notes) {
+                  try {
+                        const response = await fetch(`${API_BASE}/crypto/portfolio/positions`, {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({
+                                    symbol,
+                                    quantity,
+                                    purchase_price_usd: price,
+                                    purchase_date: date,
+                                    notes: notes || null
+                              })
+                        });
+
+                        if (!response.ok) {
+                              const error = await response.json();
+                              throw new Error(error.detail || 'Erreur lors de l\'ajout');
+                        }
+
+                        const result = await response.json();
+                        console.log('Position ajoutée:', result);
+
+                        // Close modal and reload
+                        closeModal();
+                        await loadPortfolio();
+                        applyFilters();
+
+                        alert(`✅ Position ajoutée: ${quantity} ${symbol} @ $${price}`);
+                  } catch (error) {
+                        console.error('Error adding position:', error);
+                        alert(`❌ Erreur: ${error.message}`);
+                  }
+            }
+
+            async function deletePosition(positionId, symbol) {
+                  if (!confirm(`Supprimer la position ${symbol} ?`)) {
+                        return;
+                  }
+
+                  try {
+                        const response = await fetch(`${API_BASE}/crypto/portfolio/positions/${positionId}`, {
+                              method: 'DELETE'
+                        });
+
+                        if (!response.ok) {
+                              throw new Error('Erreur lors de la suppression');
+                        }
+
+                        console.log('Position supprimée:', positionId);
+
+                        // Reload portfolio
+                        await loadPortfolio();
+                        applyFilters();
+
+                        alert(`✅ Position ${symbol} supprimée`);
+                  } catch (error) {
+                        console.error('Error deleting position:', error);
+                        alert(`❌ Erreur: ${error.message}`);
+                  }
+            }
+
+            function openEditModal(positionId, symbol) {
+                  // Get position data
+                  const position = portfolioPositions[symbol];
+                  if (!position) {
+                        alert('❌ Position introuvable');
+                        return;
+                  }
+
+                  // Set modal to edit mode
+                  document.getElementById('positionId').value = positionId;
+                  document.getElementById('modalTitle').textContent = '✏️ Modifier la Position';
+                  document.getElementById('submitBtn').textContent = 'Modifier';
+
+                  // Populate form with current values
+                  populateCryptoSelect();
+                  document.getElementById('symbolSelect').value = symbol;
+                  document.getElementById('symbolSelect').disabled = true; // Can't change crypto
+                  document.getElementById('quantityInput').value = position.quantity;
+                  document.getElementById('priceInput').value = position.purchase_price_usd;
+                  document.getElementById('dateInput').value = position.purchase_date;
+                  document.getElementById('notesInput').value = position.notes || '';
+
+                  // Show modal
+                  document.getElementById('positionModal').style.display = 'block';
+            }
+
+            async function updatePosition(positionId, symbol, quantity, price, date, notes) {
+                  try {
+                        const response = await fetch(`${API_BASE}/crypto/portfolio/positions/${positionId}`, {
+                              method: 'PUT',
+                              headers: { 'Content-Type': 'application/json' },
+                              body: JSON.stringify({
+                                    quantity,
+                                    purchase_price_usd: price,
+                                    purchase_date: date,
+                                    notes: notes || null
+                              })
+                        });
+
+                        if (!response.ok) {
+                              const error = await response.json();
+                              throw new Error(error.detail || 'Erreur lors de la modification');
+                        }
+
+                        const result = await response.json();
+                        console.log('Position modifiée:', result);
+
+                        // Close modal and reload
+                        closeModal();
+                        await loadPortfolio();
+                        applyFilters();
+
+                        alert(`✅ Position modifiée: ${quantity} ${symbol} @ $${price}`);
+                  } catch (error) {
+                        console.error('Error updating position:', error);
+                        alert(`❌ Erreur: ${error.message}`);
+                  }
+            }
+
+            // Close modal when clicking outside
+            window.onclick = function (event) {
+                  const modal = document.getElementById('positionModal');
+                  if (event.target === modal) {
+                        closeModal();
+                  }
+            }
       </script>
 </body>
 
