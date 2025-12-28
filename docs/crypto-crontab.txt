@@ -1,0 +1,6 @@
+# Crypto One-Glance - Tâches automatiques
+# Collecte quotidienne des prix à 8h10
+10 8 * * * cd /Users/vincentoudin/ai-stack && docker exec python-runner python scripts/collect_crypto_metrics.py >> /tmp/crypto-metrics.log 2>&1
+
+# Calcul des scores quotidien à 9h00
+0 9 * * * curl -X POST http://localhost:8000/crypto/compute/scores >> /tmp/crypto-scoring.log 2>&1

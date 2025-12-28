@@ -1,29 +1,94 @@
-# Changelog
+# Changelog - AI Stack
 
-All notable changes to this project will be documented in this file.
+## [2025-12-28] - Module Crypto One-Glance
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+### Ajouté
+- ✨ **Nouveau module Crypto One-Glance** pour le suivi long terme de cryptomonnaies
+- 📊 Base de données PostgreSQL avec 7 tables (assets, sources, metrics_daily, events, scores, thesis_notes)
+- 🎯 Watchlist de 18 cryptomonnaies (DeFi, L1, L2, Infrastructure, Oracle)
+- 📡 API REST complète avec endpoints :
+  - `GET /crypto/dashboard` - Vue d'ensemble
+  - `GET /crypto/assets/{symbol}` - Fiche détaillée
+  - `GET /crypto/assets/{symbol}/timeline` - Historique
+  - `POST /crypto/ingest/metrics` - Ingestion données
+  - `POST /crypto/compute/scores` - Calcul scores
+- 🤖 Script Python standalone `collect_crypto_metrics.py` pour collecte automatique
+- 📈 Système de scoring automatisé (0-30 points) :
+  - Fondamentaux (TVL, stabilité, part de marché)
+  - Tokenomics (unlocks, inflation, utilité)
+  - Momentum (tendance prix, volatilité)
+- 🚦 Statuts décisionnels : ACCUMULER / OBSERVER / RISKOFF
+- ⚠️ Flags de risque (tvl_drop, unlock_imminent, exploit_recent, etc.)
+- ⏰ Automatisation CRON (collecte à 8h10, scoring à 9h00)
+- 📚 Documentation complète (README, guide d'utilisation, exemples)
 
-## [Unreleased]
+### Technique
+- Module Python `crypto/` avec models, db, scoring, routes, api_clients
+- Migration SQL `001_create_crypto_schema.sql`
+- Scripts : `seed_crypto_watchlist.py`, `collect_crypto_metrics.py`, `test_crypto_module.py`
+- Workflows n8n simplifiés (optionnel)
+- Intégration CoinGecko API pour les prix
 
-## [0.2.0] - 2025-12-23 (Infrastructure Hardening)
+### Testé
+- ✅ 17 assets ingérés avec succès
+- ✅ Scores calculés pour tous les assets
+- ✅ Dashboard API fonctionnel
+- ✅ Collecte automatique via CRON configurée
 
-### Added
-- **Dependency Management**: Migrated `python-runner` to **Poetry** (`pyproject.toml`, `poetry.lock`).
-- **Notifications**: Integrated **Slack Incoming Webhooks** with dual-channel routing (`#cerveau-log`, `#cerveau-alert`) and Block Kit formatting.
-- **Environment Management**: Added `make dev`, `make prod`, `make logs` shortcuts and environment separation via `docker-compose.override.yml`.
-- **Documentation**: Added comprehensive `README.md`, `CHANGELOG.md`, `JOURNAL.md`, and Architecture Decision Records (ADR).
+---
 
-### Changed
-- **Python Runner**: Refactored `Dockerfile` to use Poetry instead of `pip install`.
-- **Notifications**: Reverted Pushover integration in favor of Slack for better team/log management.
+## [2025-12-26] - Job Hunter Refinement
 
-## [0.1.0] - 2025-12-22 (Initial Release)
+### Corrigé
+- 🐛 Résolution de `ModuleNotFoundError: No module named 'requests'` dans le service job-hunter
+- ✅ Vérification du bouton "Chasser" déclenchant Google News et workflow n8n
+- ✅ Configuration workflow n8n avec webhook et credentials OpenAI
+- ✅ UI reflétant correctement le mode "active hunting"
 
-### Added
-- **Core Architecture**: Docker Compose setup with `n8n`, `postgres`, `open-webui`, `qdrant`, and `python-runner`.
-- **Database**: Dedicated `brain` Postgres database with migration scripts (`001_init.sql`).
-- **API**: `python-runner` implementation using **FastAPI** (migrated from Flask).
-- **Backups**: Automated backup scripts (`backup_brain.sh`) with Git auto-commit to private repository.
-- **Security**: Tailscale integration for secure remote access without public ports.
-- **Mobile**: Custom n8n Docker image to fix iOS Home Screen Icon "white square" issue.
+---
+
+## [2025-12-20] - Restricting Commercial Access
+
+### Ajouté
+- 🔒 Restriction d'accès au module commercial (rôles ADMIN/DIRECTION uniquement)
+- 👥 Espace d'administration pour gérer les rôles utilisateurs
+- 🛡️ Contrôle d'accès basé sur les rôles (RBAC)
+
+---
+
+## [2025-12-18] - Security Audit and Hardening
+
+### Sécurité
+- 🔍 Audit de sécurité complet
+- 🔐 Vérification de l'exposition de `plainTextPassword`
+- ✅ Audit des Server Actions avec RBAC
+- 🛡️ Restriction d'accès aux données selon les rôles
+
+---
+
+## [2025-12-14] - Vercel & Modular Toggles Setup
+
+### Ajouté
+- ☁️ Configuration Vercel pour production et preview
+- 🎛️ Système de toggles modulaires (Concours, Blog, Gagnants, etc.)
+- 🔧 Interface admin pour activer/désactiver les modules
+
+---
+
+## [2025-12-07] - Debugging Mobile Connectivity Issues
+
+### Corrigé
+- 📱 Résolution des erreurs "Failed to fetch" sur mobile
+- 🔄 Implémentation proxy Next.js pour les appels API backend
+- ✅ Fonctionnalité de login utilisateur sur mobile via ngrok
+
+---
+
+## [2025-12-05] - Deploying Site to Production
+
+### Déploiement
+- 🚀 Déploiement frontend Next.js sur Vercel
+- 🗄️ Déploiement backend NestJS sur Railway
+- 🌐 Intégration domaines OVH (lesfilsdemel.fr, lesfilsdemel.com)
+- 📝 Configuration variables d'environnement
+- 🐳 Dockerfile pour le backend

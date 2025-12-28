@@ -2,6 +2,28 @@
 
 Ce document trace les réflexions, les impasses et les leçons apprises tout au long du projet.
 
+## 2025-12-28 - Module Crypto One-Glance Déployé ✅
+
+**Réalisations** :
+- ✨ Création complète du module Crypto One-Glance
+- 📊 18 cryptos suivies avec données réelles (ETH $2937, SOL $124, etc.)
+- 🤖 Automatisation CRON configurée (8h10 collecte, 9h00 scoring)
+- 📡 API REST complète et testée
+- 🎯 Système de scoring opérationnel (fondamentaux, tokenomics, momentum)
+
+**Décisions techniques** :
+- Approche script Python standalone plutôt que workflow n8n complexe
+- CRON système pour l'automatisation (plus simple que n8n)
+- Mapping hardcodé des assets (évite dépendance à un endpoint supplémentaire)
+- CoinGecko API en free tier (suffisant pour 18 assets)
+
+**Prochaines étapes** :
+- Laisser accumuler 7-30 jours de données pour affiner les scores
+- Optionnel : configurer webhooks Slack pour notifications
+- Phase 2 : RAG avec Qdrant pour gouvernance
+
+---
+
 ## 2025-12-23 : Durcissement de l'Infrastructure
 
 ### 💡 Leçon : La gestion des dépendances

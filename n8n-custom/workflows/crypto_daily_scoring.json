@@ -1,0 +1,181 @@
+{
+      "name": "Crypto: Daily Scoring",
+      "nodes": [
+            {
+                  "parameters": {
+                        "rule": {
+                              "interval": [
+                                    {
+                                          "field": "cronExpression",
+                                          "expression": "0 8 * * *"
+                                    }
+                              ]
+                        }
+                  },
+                  "name": "Schedule: Daily at 08:00 UTC",
+                  "type": "n8n-nodes-base.scheduleTrigger",
+                  "typeVersion": 1,
+                  "position": [
+                        250,
+                        300
+                  ]
+            },
+            {
+                  "parameters": {
+                        "url": "http://python-runner:8000/crypto/compute/scores",
+                        "method": "POST",
+                        "options": {}
+                  },
+                  "name": "Compute Scores",
+                  "type": "n8n-nodes-base.httpRequest",
+                  "typeVersion": 3,
+                  "position": [
+                        450,
+                        300
+                  ]
+            },
+            {
+                  "parameters": {
+                        "conditions": {
+                              "number": [
+                                    {
+                                          "value1": "={{ $json.status_changes.length }}",
+                                          "operation": "larger",
+                                          "value2": 0
+                                    }
+                              ]
+                        }
+                  },
+                  "name": "Has Status Changes",
+                  "type": "n8n-nodes-base.if",
+                  "typeVersion": 1,
+                  "position": [
+                        650,
+                        300
+                  ]
+            },
+            {
+                  "parameters": {
+                        "functionCode": "// Format status changes for Slack\nconst changes = $json.status_changes;\nconst messages = [];\n\nchanges.forEach(change => {\n  let emoji = '🔴';\n  if (change.to_status === 'ACCUMULER') emoji = '🟢';\n  else if (change.to_status === 'OBSERVER') emoji = '🟡';\n  \n  const msg = `${emoji} *${change.symbol}*\\n` +\n    `Status: ${change.from_status || 'N/A'} → *${change.to_status}*\\n` +\n    `Reason: ${change.reason}`;\n  \n  messages.push({ text: msg });\n});\n\nreturn messages.map(m => ({ json: m }));"
+                  },
+                  "name": "Format Alerts",
+                  "type": "n8n-nodes-base.code",
+                  "typeVersion": 1,
+                  "position": [
+                        850,
+                        200
+                  ]
+            },
+            {
+                  "parameters": {
+                        "url": "={{ $env.SLACK_WEBHOOK_CRYPTO_ALERTES }}",
+                        "method": "POST",
+                        "bodyParameters": {
+                              "parameters": [
+                                    {
+                                          "name": "text",
+                                          "value": "={{ $json.text }}"
+                                    }
+                              ]
+                        },
+                        "options": {}
+                  },
+                  "name": "Send Alert",
+                  "type": "n8n-nodes-base.httpRequest",
+                  "typeVersion": 3,
+                  "position": [
+                        1050,
+                        200
+                  ]
+            },
+            {
+                  "parameters": {
+                        "url": "={{ $env.SLACK_WEBHOOK_CRYPTO_LOGS }}",
+                        "method": "POST",
+                        "bodyParameters": {
+                              "parameters": [
+                                    {
+                                          "name": "text",
+                                          "value": "📊 Crypto Scoring: Computed scores for {{ $node['Compute Scores'].json.computed }} assets. {{ $node['Compute Scores'].json.status_changes.length }} status changes."
+                                    }
+                              ]
+                        },
+                        "options": {}
+                  },
+                  "name": "Log Summary",
+                  "type": "n8n-nodes-base.httpRequest",
+                  "typeVersion": 3,
+                  "position": [
+                        850,
+                        400
+                  ]
+            }
+      ],
+      "connections": {
+            "Schedule: Daily at 08:00 UTC": {
+                  "main": [
+                        [
+                              {
+                                    "node": "Compute Scores",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ]
+                  ]
+            },
+            "Compute Scores": {
+                  "main": [
+                        [
+                              {
+                                    "node": "Has Status Changes",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ]
+                  ]
+            },
+            "Has Status Changes": {
+                  "main": [
+                        [
+                              {
+                                    "node": "Format Alerts",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ],
+                        [
+                              {
+                                    "node": "Log Summary",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ]
+                  ]
+            },
+            "Format Alerts": {
+                  "main": [
+                        [
+                              {
+                                    "node": "Send Alert",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ]
+                  ]
+            },
+            "Send Alert": {
+                  "main": [
+                        [
+                              {
+                                    "node": "Log Summary",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ]
+                  ]
+            }
+      },
+      "settings": {
+            "executionOrder": "v1"
+      }
+}

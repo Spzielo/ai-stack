@@ -36,3 +36,32 @@ Objectif : Construire un "Second Cerveau" personnel autonome, robuste et intelli
 
 - [ ] **Agents** : "Research Agent" qui veille sur des sujets.
 - [ ] **Agenda** : Gestion autonome du calendrier.
+
+---
+
+## 📈 Module Crypto One-Glance
+
+Module de suivi long terme de cryptomonnaies avec scoring automatisé.
+
+### Statut : ✅ Production Ready
+
+**Fonctionnalités** :
+- 🎯 18 cryptos suivies (AAVE, ETH, SOL, LINK, etc.)
+- 📊 Scoring automatisé (Fondamentaux / Tokenomics / Momentum)
+- 🤖 Collecte automatique quotidienne (CRON à 8h10)
+- 📡 API REST complète (dashboard, one-pager, timeline)
+
+**Utilisation** :
+```bash
+# Dashboard
+curl http://localhost:8000/crypto/dashboard | jq
+
+# Fiche détaillée
+curl http://localhost:8000/crypto/assets/AAVE | jq
+
+# Collecte manuelle
+docker exec python-runner python scripts/collect_crypto_metrics.py
+```
+
+**Documentation** : [docs/crypto-module.md](docs/crypto-module.md)
+

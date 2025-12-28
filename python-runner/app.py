@@ -24,10 +24,16 @@ from core.classifier import classifier # Still used for Chat vs RAG routing high
 # The Brain is good at extracting items.
 # Let's keep the existing Classifier for the "Chat Router" part as it differentiates Conversation/Question/Action well.
 
+# Import crypto router
+from crypto.routes import router as crypto_router
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 app = FastAPI(title="Brain API")
+
+# Register crypto routes
+app.include_router(crypto_router)
 
 # --- Models ---
 

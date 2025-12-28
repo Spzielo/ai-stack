@@ -1,0 +1,54 @@
+{
+      "name": "Crypto: Daily Metrics Collection",
+      "nodes": [
+            {
+                  "parameters": {
+                        "rule": {
+                              "interval": [
+                                    {
+                                          "field": "cronExpression",
+                                          "expression": "10 7 * * *"
+                                    }
+                              ]
+                        }
+                  },
+                  "name": "Schedule: Daily at 07:10 UTC",
+                  "type": "n8n-nodes-base.scheduleTrigger",
+                  "typeVersion": 1,
+                  "position": [
+                        250,
+                        300
+                  ],
+                  "id": "node1"
+            },
+            {
+                  "parameters": {
+                        "command": "python scripts/collect_crypto_metrics.py"
+                  },
+                  "name": "Run Collection Script",
+                  "type": "n8n-nodes-base.executeCommand",
+                  "typeVersion": 1,
+                  "position": [
+                        450,
+                        300
+                  ],
+                  "id": "node2"
+            }
+      ],
+      "connections": {
+            "Schedule: Daily at 07:10 UTC": {
+                  "main": [
+                        [
+                              {
+                                    "node": "Run Collection Script",
+                                    "type": "main",
+                                    "index": 0
+                              }
+                        ]
+                  ]
+            }
+      },
+      "settings": {
+            "executionOrder": "v1"
+      }
+}

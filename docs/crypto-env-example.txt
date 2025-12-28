@@ -1,0 +1,15 @@
+# Example .env additions for Crypto One-Glance Module
+
+# ============================================
+# Crypto Module Configuration
+# ============================================
+
+# External API Keys (optional for free tiers)
+COINGECKO_API_KEY=
+DEFILLAMA_API_KEY=
+TOKENUNLOCKS_API_KEY=
+
+# Slack Webhooks for Crypto Alerts
+# Create webhooks at: https://api.slack.com/messaging/webhooks
+SLACK_WEBHOOK_CRYPTO_ALERTES=https://hooks.slack.com/services/YOUR/WEBHOOK/URL
+SLACK_WEBHOOK_CRYPTO_LOGS=https://hooks.slack.com/services/YOUR/WEBHOOK/URL

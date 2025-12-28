@@ -1,0 +1,3 @@
+"""
+Crypto One-Glance Module.
+"""
