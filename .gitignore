@@ -26,3 +26,10 @@ downloads/
 # For now, let's include sql files in backups/ but exclude everything else)
 backups/*
 !backups/*.sql
+
+# Local DBs and Trash
+*.db
+patch_dashboard.py
+test_*.py
+python-runner/test_*.py
+

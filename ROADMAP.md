@@ -46,18 +46,18 @@ Module de suivi long terme de cryptomonnaies avec scoring automatisé.
 ### Statut : ✅ Production Ready
 
 **Fonctionnalités** :
-- 🎯 18 cryptos suivies (AAVE, ETH, SOL, LINK, etc.)
+- 🎯 Tracker Illimité : Recherche & Ajout de n'importe quelle crypto (CoinGecko)
 - 📊 Scoring automatisé (Fondamentaux / Tokenomics / Momentum)
 - 🤖 Collecte automatique quotidienne (CRON à 8h10)
 - 📡 API REST complète (dashboard, one-pager, timeline)
 
 **Utilisation** :
 ```bash
-# Dashboard
-curl http://localhost:8000/crypto/dashboard | jq
+# Dashboard (Search UI intégrée)
+open http://localhost/crypto.html
 
-# Fiche détaillée
-curl http://localhost:8000/crypto/assets/AAVE | jq
+# API Search
+curl "http://localhost:8000/crypto/search?query=pepe"
 
 # Collecte manuelle
 docker exec python-runner python scripts/collect_crypto_metrics.py

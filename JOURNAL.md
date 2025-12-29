@@ -22,6 +22,18 @@ Ce document trace les réflexions, les impasses et les leçons apprises tout au 
 - Optionnel : configurer webhooks Slack pour notifications
 - Phase 2 : RAG avec Qdrant pour gouvernance
 
+### 💡 Leçon : Developer Experience (DX) & Frontend
+**Problème** : En modifiant `crypto.html`, rien ne changeait sur localhost.
+**Cause** : Le conteneur Docker `dashboard` était une image statique (buildée) sans lien avec le dossier local.
+**Fix** : Ajout d'un `volume` dans docker-compose.
+**Retenue** : Pour tout service Frontend, **toujours** mapper le volume de dev dès le jour 1. Sinon, on perd du temps à "rebuilder" pour changer une couleur.
+
+### 🚀 Shift : D'une liste fermée à l'Open World
+Initialement, je pensais restreindre à une "watchlist curée".
+**Feedback** : L'utilisateur veut suivre "PEPE" ou "TURBO" immédiatement.
+**Action** : Ouverture via l'API Search de CoinGecko.
+**Architecture** : Backend agit comme proxy (pour gérer les clés/rate limits futurs) -> Frontend affiche. C'est plus propre que d'appeler CoinGecko depuis le JS (CORS, sécurité).
+
 ---
 
 ## 2025-12-23 : Durcissement de l'Infrastructure

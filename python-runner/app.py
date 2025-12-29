@@ -26,6 +26,7 @@ from core.classifier import classifier # Still used for Chat vs RAG routing high
 
 # Import crypto router
 from crypto.routes import router as crypto_router
+from stocks.routes import router as stocks_router
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -44,6 +45,7 @@ app.add_middleware(
 
 # Register crypto routes
 app.include_router(crypto_router)
+app.include_router(stocks_router)
 
 # --- Models ---
 

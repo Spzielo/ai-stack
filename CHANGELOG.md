@@ -34,6 +34,13 @@
 - ✅ Scores calculés pour tous les assets
 - ✅ Dashboard API fonctionnel
 - ✅ Collecte automatique via CRON configurée
+- ✅ Sync Dashboard/Localhost corrigé (Volume Docker)
+- ✅ Feature "Search & Add" validée
+
+### Améliorations (Update soir)
+- ✨ **Recherche Globale** : Ajout d'une modale pour rechercher et ajouter n'importe quelle crypto via CoinGecko.
+- 🐛 **Fix UI** : Correction du bouton "Ajouter" qui crashait (undefined event).
+- 🛠️ **Dev Experience** : Ajout du volume mount `./dashboard` dans docker-compose pour le hot-reload du frontend.
 
 ---
 

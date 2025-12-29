@@ -503,6 +503,47 @@ async def trigger_collect():
 
 
 
+# --- Search Endpoints ---
+
+@router.get("/search")
+async def search_coingecko(query: str):
+    """
+    Search for coins on CoinGecko.
+    Proxies the request to https://api.coingecko.com/api/v3/search?query={query}
+    """
+    import httpx
+    
+    try:
+        url = "https://api.coingecko.com/api/v3/search"
+        params = {"query": query}
+        
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(url, params=params)
+            response.raise_for_status()
+            data = response.json()
+            
+        # Return simplified list of coins
+        coins = []
+        for coin in data.get("coins", [])[:20]:  # Limit to top 20 results
+            coins.append({
+                "id": coin["id"],
+                "symbol": coin["symbol"],
+                "name": coin["name"],
+                "thumb": coin["thumb"],
+                "market_cap_rank": coin.get("market_cap_rank")
+            })
+            
+        return {"coins": coins}
+        
+    except httpx.HTTPError as e:
+        logger.error(f"CoinGecko search error: {e}")
+        # Return empty list on error instead of failing, to keep UI smooth
+        return {"coins": []}
+    except Exception as e:
+        logger.error(f"Error searching coins: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 # --- Watchlist Management Endpoints ---
 
 @router.post("/watchlist/add")

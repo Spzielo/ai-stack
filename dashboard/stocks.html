@@ -4,7 +4,7 @@
 <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Crypto One-Glance</title>
+      <title>Stocks One-Glance</title>
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
@@ -584,12 +584,12 @@
 
             <div class="crypto-header">
                   <div>
-                        <h1>📈 Crypto One-Glance</h1>
-                        <p>Suivi long terme de cryptomonnaies</p>
+                        <h1>📈 Actions (Stocks)</h1>
+                        <p>Suivi de votre portefeuille boursier</p>
                   </div>
                   <button id="addCryptoBtn" class="add-btn" onclick="openSearchModal()"
                         style="margin-right: 10px; background: rgba(52, 211, 153, 0.2); color: #34d399; border: 1px solid #34d399; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s;">
-                        ➕ Ajouter Crypto
+                        ➕ Ajouter Action
                   </button>
                   <button id="updateBtn" class="update-btn" onclick="updateData()">
                         🔄 Mettre à jour
@@ -745,13 +745,18 @@
       <div id="searchModal" class="modal">
             <div class="modal-content">
                   <div class="modal-header">
-                        <h2>🔍 Rechercher une Crypto</h2>
+                        <h2>🔍 Rechercher une Action</h2>
                         <span class="close-btn" onclick="closeSearchModal()">&times;</span>
                   </div>
                   <div class="form-group">
-                        <input type="text" id="coinSearchInput" placeholder="Nom ou symbole (ex: Pepe, Doge...)"
+                        <input type="text" id="coinSearchInput"
+                              placeholder="Nom (ex: Apple) ou Ticker officiel (ex: AAPL, MC.PA)"
                               style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; font-size: 16px;"
                               oninput="debounceSearch()">
+                        <p style="font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; font-style: italic;">
+                              ℹ️ Si la recherche par nom échoue (blocage API), essayez le <strong>Ticker exact</strong>
+                              (ex: <code>MC.PA</code> pour LVMH, <code>TTE.PA</code> pour Total).
+                        </p>
                   </div>
                   <div id="searchResults" style="max-height: 400px; overflow-y: auto; margin-top: 1rem;">
                         <!-- Results will appear here -->
@@ -769,7 +774,7 @@
 
             async function loadDashboard() {
                   try {
-                        const response = await fetch(`${API_BASE}/crypto/dashboard`);
+                        const response = await fetch(`${API_BASE}/stocks/dashboard`);
                         const data = await response.json();
 
                         // Store all assets
@@ -785,7 +790,7 @@
                         document.getElementById('avgScore').textContent = avgScore ? avgScore.toFixed(1) : '-';
 
                         // Load portfolio
-                        await loadPortfolio();
+                        await loadPortfolio(data.positions);
 
                         // Apply filters
                         applyFilters();
@@ -799,117 +804,76 @@
                   }
             }
 
-            async function loadPortfolio() {
-                  try {
-                        const response = await fetch(`${API_BASE}/crypto/portfolio/positions`);
-                        const data = await response.json();
-
-                        // Store positions by symbol as arrays
-                        const positionsBySymbol = {};
-                        data.positions.forEach(pos => {
-                              if (!positionsBySymbol[pos.symbol]) {
-                                    positionsBySymbol[pos.symbol] = [];
-                              }
-                              positionsBySymbol[pos.symbol].push(pos);
-                        });
-
-                        // Calculate aggregated values for each symbol
-                        portfolioPositions = {};
-                        Object.keys(positionsBySymbol).forEach(symbol => {
-                              const positions = positionsBySymbol[symbol];
-                              const aggregated = {
-                                    symbol: symbol,
-                                    positions: positions, // Keep individual positions
-                                    total_quantity: positions.reduce((sum, p) => sum + p.quantity, 0),
-                                    total_invested: positions.reduce((sum, p) => sum + p.invested_amount_usd, 0),
-                                    total_current_value: positions.reduce((sum, p) => sum + (p.current_value_usd || 0), 0),
-                                    total_profit_loss: positions.reduce((sum, p) => sum + (p.profit_loss_usd || 0), 0),
-                                    count: positions.length
-                              };
-                              aggregated.total_profit_loss_percent = aggregated.total_invested > 0
-                                    ? (aggregated.total_profit_loss / aggregated.total_invested) * 100
-                                    : 0;
-                              portfolioPositions[symbol] = aggregated;
-                        });
-
-                        // Ensure all symbols with positions are in allAssets
-                        // This prevents missing cards for assets not in the dashboard data
-                        Object.keys(portfolioPositions).forEach(symbol => {
-                              const existsInAssets = allAssets.some(a => a.symbol === symbol);
-                              if (!existsInAssets) {
-                                    // Add a minimal asset entry for this symbol
-                                    const position = portfolioPositions[symbol];
-                                    const firstPos = position.positions[0];
-
-                                    allAssets.push({
-                                          symbol: symbol,
-                                          name: symbol, // Use symbol as name if not available
-                                          category: 'Other',
-                                          price_usd: firstPos.current_value_usd / firstPos.quantity, // Calculate current price
-                                          total_score: 0,
-                                          status: 'OBSERVER',
-                                          tracking_type: 'portfolio' // Mark as portfolio-only asset
-                                    });
-                              }
-                        });
-
-                        // Update portfolio summary if there are positions
-                        if (data.positions.length > 0) {
-                              document.getElementById('portfolioSummary').style.display = 'grid';
-                              document.getElementById('totalInvested').textContent = `$${data.summary.total_invested.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-                              document.getElementById('totalValue').textContent = `$${data.summary.total_value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-                              const profitLoss = data.summary.total_profit_loss;
-                              const profitLossPercent = data.summary.total_profit_loss_percent;
-                              const profitLossCard = document.getElementById('profitLossCard');
-                              const profitLossText = `${profitLoss >= 0 ? '+' : ''}$${Math.abs(profitLoss).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${profitLoss >= 0 ? '+' : ''}${profitLossPercent.toFixed(2)}%)`;
-
-                              document.getElementById('totalProfitLoss').textContent = profitLossText;
-                              profitLossCard.className = 'summary-card ' + (profitLoss >= 0 ? 'positive' : 'negative');
-                        } else {
-                              document.getElementById('portfolioSummary').style.display = 'none';
+            async function loadPortfolio(positionsData) {
+                  // positionsData is passed directly from dashboard API
+                  const positionsBySymbol = {};
+                  (positionsData || []).forEach(pos => {
+                        if (!positionsBySymbol[pos.symbol]) {
+                              positionsBySymbol[pos.symbol] = [];
                         }
-                  } catch (error) {
-                        console.error('Error loading portfolio:', error);
-                        // Portfolio is optional, don't show error to user
+                        positionsBySymbol[pos.symbol].push(pos);
+                  });
+
+                  // Calculate aggregated values for each symbol
+                  portfolioPositions = {};
+                  Object.keys(positionsBySymbol).forEach(symbol => {
+                        const positions = positionsBySymbol[symbol];
+                        const aggregated = {
+                              symbol: symbol,
+                              positions: positions,
+                              total_quantity: positions.reduce((sum, p) => sum + parseFloat(p.quantity), 0),
+                              total_invested: positions.reduce((sum, p) => sum + parseFloat(p.invested_amount), 0),
+                              // Current value: qty * current_price (from positions query or asset price)
+                              count: positions.length
+                        };
+
+                        // Note: Backend positions query already calculates current_value and PnL based on latest metrics
+                        aggregated.total_current_value = positions.reduce((sum, p) => sum + parseFloat(p.current_value || 0), 0);
+                        aggregated.total_profit_loss = positions.reduce((sum, p) => sum + parseFloat(p.pnl || 0), 0);
+
+                        aggregated.total_profit_loss_percent = aggregated.total_invested > 0
+                              ? (aggregated.total_profit_loss / aggregated.total_invested) * 100
+                              : 0;
+                        portfolioPositions[symbol] = aggregated;
+                  });
+
+                  // Update portfolio summary if there are positions
+                  if (positionsData && positionsData.length > 0) {
+                        const totalInvested = Object.values(portfolioPositions).reduce((sum, p) => sum + p.total_invested, 0);
+                        const totalValue = Object.values(portfolioPositions).reduce((sum, p) => sum + p.total_current_value, 0);
+                        const totalPL = totalValue - totalInvested;
+                        const totalPLPercent = totalInvested > 0 ? (totalPL / totalInvested) * 100 : 0;
+
+                        document.getElementById('portfolioSummary').style.display = 'grid';
+                        document.getElementById('totalInvested').textContent = `$${totalInvested.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                        document.getElementById('totalValue').textContent = `$${totalValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+
+                        const profitLossCard = document.getElementById('profitLossCard');
+                        const profitLossText = `${totalPL >= 0 ? '+' : ''}$${Math.abs(totalPL).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${totalPL >= 0 ? '+' : ''}${totalPLPercent.toFixed(2)}%)`;
+
+                        document.getElementById('totalProfitLoss').textContent = profitLossText;
+                        profitLossCard.className = 'summary-card ' + (totalPL >= 0 ? 'positive' : 'negative');
+                  } else {
+                        document.getElementById('portfolioSummary').style.display = 'none';
                   }
             }
 
+            // Simplified apply filters (removed score logic for now)
             function applyFilters() {
                   const filterType = document.getElementById('filterType').value;
                   const filterCategory = document.getElementById('filterCategory').value;
-                  const filterScore = document.getElementById('filterScore').value;
                   const searchTerm = document.getElementById('searchInput').value.toLowerCase();
 
                   let filtered = allAssets;
 
-                  // Filter by type
-                  if (filterType) {
-                        if (filterType === 'portfolio') {
-                              // Show only assets with positions
-                              filtered = filtered.filter(a => portfolioPositions[a.symbol]);
-                        } else {
-                              filtered = filtered.filter(a => a.tracking_type === filterType);
-                        }
+                  if (filterType === 'portfolio') {
+                        filtered = filtered.filter(a => portfolioPositions[a.symbol]);
                   }
 
-                  // Filter by category
                   if (filterCategory) {
-                        filtered = filtered.filter(a => a.category === filterCategory);
+                        filtered = filtered.filter(a => a.sector === filterCategory); // Use sector for stocks
                   }
 
-                  // Filter by score
-                  if (filterScore) {
-                        filtered = filtered.filter(a => {
-                              const score = a.total_score || 0;
-                              if (filterScore === 'high') return score >= 20;
-                              if (filterScore === 'medium') return score >= 15 && score < 20;
-                              if (filterScore === 'low') return score < 15;
-                              return true;
-                        });
-                  }
-
-                  // Filter by search
                   if (searchTerm) {
                         filtered = filtered.filter(a =>
                               a.symbol.toLowerCase().includes(searchTerm) ||
@@ -917,7 +881,6 @@
                         );
                   }
 
-                  // Render filtered assets
                   renderAssets(filtered);
             }
 
@@ -936,16 +899,14 @@
                   }
 
                   assets
-                        .sort((a, b) => (b.total_score || 0) - (a.total_score || 0))
+                        .sort((a, b) => a.symbol.localeCompare(b.symbol))
                         .forEach(asset => {
                               const card = document.createElement('div');
                               card.className = 'crypto-card';
 
-                              const statusClass = asset.status ? `status-${asset.status.toLowerCase()}` : 'status-observer';
-                              const price = asset.price_usd ? `$${asset.price_usd.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'N/A';
-                              const typeLabel = asset.tracking_type === 'top50' ? '🔝' : '⭐';
+                              const price = asset.price ? `$${asset.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : 'N/A';
 
-                              // Check if user has a position in this asset
+                              // Check if user has a position
                               const position = portfolioPositions[asset.symbol];
                               let positionHTML = '';
 
@@ -969,76 +930,36 @@
                                     `;
                               }
 
+                              const peRatio = asset.pe_ratio ? asset.pe_ratio.toFixed(2) : '-';
+                              const divYield = asset.dividend_yield ? (asset.dividend_yield * 100).toFixed(2) + '%' : '-';
+
                               card.innerHTML = `
                             <div style="display: flex; justify-content: space-between; align-items: start;">
                                 <div class="crypto-symbol">${asset.symbol}</div>
-                                <span style="font-size: 18px;" title="${asset.tracking_type === 'top50' ? 'Top 50' : 'Watchlist'}">${typeLabel}</span>
+                                <span style="font-size: 12px; opacity:0.7;">${asset.currency || 'USD'}</span>
                             </div>
-                            <div class="crypto-name">${asset.name} • ${asset.category}</div>
+                            <div class="crypto-name">${asset.name} • ${asset.sector || 'N/A'}</div>
                             <div class="crypto-price">${price}</div>
                             <div class="crypto-score">
                                 <div>
-                                    <div class="status-label">Score</div>
-                                    <div class="score-value">${asset.total_score ? asset.total_score.toFixed(1) : '-'}/30</div>
+                                    <div class="status-label">P/E Ratio</div>
+                                    <div class="score-value">${peRatio}</div>
                                 </div>
-                                <div class="status-badge ${statusClass}">
-                                    ${asset.status || 'N/A'}
+                                <div>
+                                    <div class="status-label">Div. Yield</div>
+                                    <div class="score-value">${divYield}</div>
                                 </div>
                             </div>
                             ${positionHTML}
                         `;
-
-                              card.onclick = () => window.location.href = `crypto-detail.html?symbol=${asset.symbol}`;
                               grid.appendChild(card);
                         });
             }
 
             async function updateData() {
-                  const btn = document.getElementById('updateBtn');
-                  btn.disabled = true;
-                  btn.textContent = '⏳ Collecte en cours...';
-
-                  try {
-                        // Trigger collection
-                        const collectResponse = await fetch(`${API_BASE}/crypto/trigger/collect`, {
-                              method: 'POST'
-                        });
-
-                        if (!collectResponse.ok) {
-                              throw new Error('Erreur lors de la collecte des données');
-                        }
-
-                        btn.textContent = '⏳ Calcul des scores...';
-
-                        // Compute scores
-                        const scoreResponse = await fetch(`${API_BASE}/crypto/compute/scores`, {
-                              method: 'POST'
-                        });
-
-                        if (!scoreResponse.ok) {
-                              throw new Error('Erreur lors du calcul des scores');
-                        }
-
-                        const scoreData = await scoreResponse.json();
-
-                        // Success!
-                        btn.textContent = '✅ Mise à jour réussie';
-                        setTimeout(() => {
-                              btn.textContent = '🔄 Mettre à jour';
-                              loadDashboard(); // Reload data
-                        }, 2000);
-
-                  } catch (error) {
-                        btn.textContent = '❌ Erreur';
-                        alert('❌ Erreur: ' + error.message);
-                        setTimeout(() => {
-                              btn.textContent = '🔄 Mettre à jour';
-                        }, 2000);
-                  } finally {
-                        btn.disabled = false;
-                  }
+                  // For stocks, we just reload the dashboard which fetches latest data
+                  loadDashboard();
             }
-
             // Load dashboard on page load
             loadDashboard();
 
@@ -1101,14 +1022,14 @@
 
             async function addPosition(symbol, quantity, price, date, notes) {
                   try {
-                        const response = await fetch(`${API_BASE}/crypto/portfolio/positions`, {
+                        const response = await fetch(`${API_BASE}/stocks/positions`, {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({
                                     symbol,
                                     quantity,
-                                    purchase_price_usd: price,
-                                    purchase_date: date,
+                                    price,
+                                    date,
                                     notes: notes || null
                               })
                         });
@@ -1392,20 +1313,19 @@
                   resultsDiv.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
 
                   try {
-                        const response = await fetch(`${API_BASE}/crypto/search?query=${query}`);
+                        const response = await fetch(`${API_BASE}/stocks/search?query=${query}`);
                         const data = await response.json();
 
-                        if (data.coins.length === 0) {
+                        if (!data.results || data.results.length === 0) {
                               resultsDiv.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.5);">Aucun résultat trouvé</p>';
                               return;
                         }
 
                         let html = '<div class="search-results-list" style="display: flex; flex-direction: column; gap: 10px;">';
 
-                        data.coins.forEach(coin => {
+                        data.results.forEach(coin => {
                               // Check if already in our assets
                               const existing = allAssets.find(a =>
-                                    (a.coingecko_id === coin.id) ||
                                     (a.symbol.toLowerCase() === coin.symbol.toLowerCase())
                               );
 
@@ -1442,7 +1362,7 @@
 
             async function addCoinToWatchlist(id, symbol, name, btn) {
                   try {
-                        const response = await fetch(`${API_BASE}/crypto/watchlist/add?symbol=${symbol}&name=${name}&coingecko_id=${id}&category=Other`, {
+                        const response = await fetch(`${API_BASE}/stocks/watchlist/add?symbol=${symbol}&name=${name}&coingecko_id=${id}&category=Other`, {
                               method: 'POST'
                         });
 

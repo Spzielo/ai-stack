@@ -61,6 +61,7 @@ docker exec python-runner poetry add pandas
 ## ✨ Features
 
 - **🧠 Cognitive Engine**: Categorizes inputs (Tasks vs Notes) using **Local LLMs** (Qwen 2.5 / Llama 3).
+- **📈 Crypto Tracker**: Real-time portfolio tracking & scoring (Search & Add interaction).
 - **📝 Second Brain**: RAG (Retrieval Augmented Generation) powered by **Qdrant**.
 - **💬 Cockpit**: Chat interface via **Open WebUI**.
 - **🔔 Notifications**: Dual-channel Slack alerts (Logs vs Alerts).
